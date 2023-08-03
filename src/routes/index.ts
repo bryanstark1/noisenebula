@@ -1,14 +1,9 @@
-import { Router } from "express";
-import { getSongs, addSong, updateSong, deleteSong } from "../controllers/songs";
+import { Router, Request, Response } from "express";
 
 const router: Router = Router();
 
-router.get("/songs", getSongs);
-
-router.post("/add-song", addSong);
-
-router.put("/edit-song/:id", updateSong);
-
-router.delete("/delete-song/:id", deleteSong);
+router.get("/", (req: Request, res: Response) => {
+  res.send("Hello from Express");
+});
 
 export default router;
