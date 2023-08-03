@@ -34,3 +34,45 @@ const addSong = async (req: Request, res: Response): Promise<void> => {
     throw error
   }
 };
+
+const updateSong = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      params: { id },
+      body
+    } = req;
+
+    const updateSong: ISong | null = await Song.findByIdAndUpdate(
+      { _id:id },
+      body
+    );
+
+    const allSongs: ISong[] = await Song.find();
+    res.status(200).json({
+      message: "Song updated",
+      song: updateSong,
+      songs: allSongs
+    });
+  } catch (error) {
+    throw error
+  }
+};
+
+const deleteSong = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const deletedSong: ISong | null = await Song.findByIdAndRemove(
+      req.params.id
+    );
+
+    const allSongs: ISong[] = await Song.find();
+    res.status(200).json({
+      message: "Song deleted",
+      song: deletedSong,
+      songs: allSongs
+    });
+  } catch (error) {
+    throw error
+  }
+};
+
+export { getSongs, addSong, updateSong, deleteSong };
