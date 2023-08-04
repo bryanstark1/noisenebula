@@ -1,5 +1,5 @@
-import { ISong } from './../types/song';
-import { model, Schema } from "mongoose";
+// import { ISong } from './../types/song';
+import { InferSchemaType, model, Schema } from "mongoose";
 
 const songSchema: Schema = new Schema(
   {
@@ -31,4 +31,6 @@ const songSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export default model<ISong>("Song", songSchema);
+type Song = InferSchemaType<typeof songSchema>;
+
+export default model<Song>("Song", songSchema);
