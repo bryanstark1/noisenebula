@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
-import * as songsAPI from "./utilities/songs-api";
-import { Song } from './models/song';
+import Browse from './pages/Browse/Browse';
+import { Song as SongModel } from './models/song';
+import * as SongsApi from './utilities/songs-api';
 import './App.css';
 
 export default function App() {
-  const [songs, setSongs] = useState<Song[]>([]);
+  const [songs, setSongs] = useState<SongModel[]>([]);
 
   useEffect(() => {
     async function fetchSongs() {
       try {
-        const response = await fetch('http://localhost:4000/songs', { method: "GET" });
-        const songs = await response.json();
+        const songs = await SongsApi.fetchSongs();
         setSongs(songs);
       } catch (error) {
         console.log(error);
@@ -23,13 +24,9 @@ export default function App() {
   return (
     <div className="App">
       <Header />
-      <div>
-        {songs && songs.length ? (
-          <h2>{JSON.stringify(songs)}</h2>
-        ) : (
-          <h2>No songs yet!</h2>
-        )}
-      </div>
+      <Routes>
+        <Route path='/songs' element={<Browse songs={songs} />} />
+      </Routes>
     </div>
   );
 };

@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+header a {
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}

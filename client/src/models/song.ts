@@ -9,3 +9,7 @@ export interface Song {
   createdAt: string,
   updatedAt: string,
 }
+
+export interface SongProps {
+  song: Song,
+}
