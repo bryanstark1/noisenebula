@@ -21,30 +21,6 @@ export const getSong = async (req: Request, res: Response): Promise<void> => {
   };
 };
 
-// export const addSong = async (req: Request, res: Response): Promise<void> => {
-//   try {
-//     const body = req.body as Pick<ISong, "title" | "artist" | "album" | "audioFile" | "artwork">;
-
-//     const song: ISong = new Song({
-//       title: body.title,
-//       artist: body.artist,
-//       album: body.artist,
-//       audioFile: body.audioFile,
-//       artwork: body.artwork,
-//       playCount: 0
-//     });
-
-//     const newSong: ISong = await song.save();
-//     const allSongs: ISong[] = await Song.find();
-
-//     res
-//       .status(201)
-//       .json({ message: "Song added", song: newSong, songs: allSongs });
-//   } catch (error) {
-//     throw error;
-//   };
-// };
-
 export const addSong = async (req: Request, res: Response): Promise<void> => {
   const title = req.body.title;
   const artist = req.body.artist;
@@ -63,29 +39,38 @@ export const addSong = async (req: Request, res: Response): Promise<void> => {
   };
 };
 
-
 export const updateSong = async (req: Request, res: Response): Promise<void> => {
+  interface SongBody {
+    title: string,
+    artist: string,
+    album: string,
+  };
+
+  interface UpdateSong {
+    id: string,
+  }
+
+  const songId = req.params.id;
+  const updatedData = req.body;
+
   try {
-    const {
-      params: { id },
-      body
-    } = req;
+    const song = await Song.findById(songId).exec();
 
-    const updateSong: ISong | null = await Song.findByIdAndUpdate(
-      { _id:id },
-      body
-    );
+    if (!song) {
+      throw ('error');
+    };
 
-    const allSongs: ISong[] = await Song.find();
-    res.status(200).json({
-      message: "Song updated",
-      song: updateSong,
-      songs: allSongs
-    });
+    song.title = updatedData.title;
+    song.artist = updatedData.artist;
+    song.album = updatedData.album;
+
+    const updatedSong = await song.save();
+    res.status(200).json(updatedSong);
   } catch (error) {
     throw error
   }
 };
+
 
 export const deleteSong = async (req: Request, res: Response): Promise<void> => {
   try {
