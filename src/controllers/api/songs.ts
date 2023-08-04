@@ -2,16 +2,25 @@ import { Response, Request } from "express";
 import { ISong } from "../../types/song";
 import Song from "../../models/song";
 
-const getSongs = async (req: Request, res: Response): Promise<void> => {
+// export const getSongs = async (req: Request, res: Response): Promise<void> => {
+//   try {
+//     const songs: ISong[] = await Song.find();
+//     res.status(200).json({ songs });
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+export const getSongs = async (req: Request, res: Response): Promise<void> => {
   try {
-    const songs: ISong[] = await Song.find();
-    res.status(200).json({ songs });
+    const songs: ISong[] = await Song.find().exec();
+    res.status(200).json(songs);
   } catch (error) {
     throw error;
   }
 };
 
-const addSong = async (req: Request, res: Response): Promise<void> => {
+export const addSong = async (req: Request, res: Response): Promise<void> => {
   try {
     const body = req.body as Pick<ISong, "title" | "artist" | "album" | "audioFile" | "artwork">;
 
@@ -35,7 +44,7 @@ const addSong = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const updateSong = async (req: Request, res: Response): Promise<void> => {
+export const updateSong = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       params: { id },
@@ -58,7 +67,7 @@ const updateSong = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const deleteSong = async (req: Request, res: Response): Promise<void> => {
+export const deleteSong = async (req: Request, res: Response): Promise<void> => {
   try {
     const deletedSong: ISong | null = await Song.findByIdAndRemove(
       req.params.id
@@ -74,5 +83,3 @@ const deleteSong = async (req: Request, res: Response): Promise<void> => {
     throw error
   }
 };
-
-export { getSongs, addSong, updateSong, deleteSong };

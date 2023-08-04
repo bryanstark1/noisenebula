@@ -1,14 +1,14 @@
 import { Router } from "express";
-import { getSongs, addSong, updateSong, deleteSong } from "../controllers/songs";
+import * as songsCtrl from "../controllers/api/songs";
 
 const router: Router = Router();
 
-router.get("/songs", getSongs);
+router.get("/", songsCtrl.getSongs);
 
-router.post("/add-song", addSong);
+router.post("/add-song", songsCtrl.addSong);
 
-router.put("/edit-song/:id", updateSong);
+router.put("/edit-song/:id", songsCtrl.updateSong);
 
-router.delete("/delete-song/:id", deleteSong);
+router.delete("/delete-song/:id", songsCtrl.deleteSong);
 
 export default router;

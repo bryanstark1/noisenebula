@@ -1,14 +1,14 @@
-import axios, { AxiosResponse } from "axios"
+import axios, { AxiosResponse } from "axios";
 
-const baseUrl: string = "http://localhost:4000"
+const BASE_URL: string = "http://localhost:4000";
 
 export const getSongs = async (): Promise<AxiosResponse<ApiDataType>> => {
   try {
     const songs: AxiosResponse<ApiDataType> = await axios.get(
-      baseUrl + "/songs"
+      BASE_URL + "/songs"
     )
     return songs
   } catch (error) {
     throw new Error('error')
   }
-}
+};

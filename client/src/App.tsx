@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import Header from './components/Header/Header';
+import * as songsAPI from "./utilities/songs-api";
 import './App.css';
 
-function App() {
+export default function App() {
   const [songs, setSongs] = useState<ISong[]>([]);
 
   useEffect(() => {
-    const getSongs = async () => {
-      try {
-        const response = await fetch("http://localhost:4000/api/songs", { method: "GET" });
-        const songs = await response.json();
-      } catch (error) {
-        console.error(error);
-      };
-    }
-    getSongs();
-  }, []);
+    fetchSongs();
+  });
+
+  const fetchSongs = (): void => {
+    songsAPI.getSongs()
+    .then(({ data: { songs } }: ISong[] | any) => setSongs(songs))
+    .catch((err: Error) => console.log(err));
+  };
 
   return (
     <div className="App">
-      <header className="App-header">
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div>
+        {songs && songs.length ? (
+          <ul>songs</ul>
+        ) : (
+          <h2>No Songs Yet!</h2>
+        )}
+      </div>
     </div>
   );
 };
-
-export default App;
