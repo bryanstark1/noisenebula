@@ -2,9 +2,9 @@ interface ISong {
   _id: string
   title: string
   artist: string
-  album: string
+  album?: string
   audioFile: string
-  artwork: string
+  artwork?: string
   playCount: number
   createdAt?: string
   updatedAt?: string

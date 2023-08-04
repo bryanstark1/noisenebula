@@ -7,6 +7,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "app.ts"],
+  "include": ["src/**/*", "src/server.ts"],
   "exclude": ["src/types/*.ts", "node_modules", ".vscode"]
 }
