@@ -17,7 +17,7 @@ const songSchema: Schema = new Schema(
     },
     audioFile: {
       type: String,
-      required: true,
+      // required: true,
     },
     artwork: {
       type: String,
