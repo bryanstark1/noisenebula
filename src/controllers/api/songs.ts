@@ -71,24 +71,6 @@ export const updateSong = async (req: Request, res: Response): Promise<void> => 
   }
 };
 
-
-// export const deleteSong = async (req: Request, res: Response): Promise<void> => {
-//   try {
-//     const deletedSong: ISong | null = await Song.findByIdAndRemove(
-//       req.params.id
-//     );
-
-//     const allSongs: ISong[] = await Song.find();
-//     res.status(200).json({
-//       message: "Song deleted",
-//       song: deletedSong,
-//       songs: allSongs
-//     });
-//   } catch (error) {
-//     throw error
-//   }
-// };
-
 export const deleteSong = async (req: Request, res: Response): Promise<void> => {
   const songId = req.params.id;
 
