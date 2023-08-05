@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import Browse from './pages/Browse/Browse';
 import { Song as SongModel } from './models/song';
 import * as SongsApi from './utilities/songs-api';
-import './App.css';
+import Browse from './pages/Browse/Browse';
+import Header from './components/Header/Header';
+import Modal from './components/Modal/Modal'
 
 export default function App() {
   const [songs, setSongs] = useState<SongModel[]>([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const headerProps = {
+    setShowModal: {setShowModal}
+  }
 
   useEffect(() => {
     async function fetchSongs() {
@@ -23,10 +28,13 @@ export default function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header onOpen={() => setShowModal(true)} />
       <Routes>
         <Route path='/songs' element={<Browse songs={songs} />} />
       </Routes>
+      {showModal &&
+        <Modal onClose={() => setShowModal(false)}/>
+      }
     </div>
   );
 };
