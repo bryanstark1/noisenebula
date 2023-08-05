@@ -10,19 +10,16 @@ export default function App() {
   const [songs, setSongs] = useState<SongModel[]>([]);
   const [showModal, setShowModal] = useState(false);
 
-  const headerProps = {
-    setShowModal: {setShowModal}
-  }
+  async function fetchSongs() {
+    try {
+      const songs = await SongsApi.fetchSongs();
+      setSongs(songs);
+    } catch (error) {
+      console.log(error);
+    };
+  };
 
   useEffect(() => {
-    async function fetchSongs() {
-      try {
-        const songs = await SongsApi.fetchSongs();
-        setSongs(songs);
-      } catch (error) {
-        console.log(error);
-      };
-    }
     fetchSongs();
   }, []);
 
@@ -33,7 +30,7 @@ export default function App() {
         <Route path='/songs' element={<Browse songs={songs} />} />
       </Routes>
       {showModal &&
-        <Modal onClose={() => setShowModal(false)}/>
+        <Modal onClose={() => setShowModal(false)} fetchSongs={fetchSongs}/>
       }
     </div>
   );

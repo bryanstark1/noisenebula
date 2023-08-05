@@ -17,9 +17,14 @@ export async function fetchSongs(): Promise<SongModel.Song[]> {
   return response.json();
 }
 
+export interface SongInput {
+  title: string,
+  artist: string,
+  album: string,
+}
 
-export async function addSong(song: SongModel.SongProps): Promise<SongModel.Song> {
-  const response = await fetchData('/songs', {
+export async function addSong(song: SongInput): Promise<SongModel.Song> {
+  const response = await fetchData('http://localhost:4000/songs/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
