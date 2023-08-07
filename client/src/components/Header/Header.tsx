@@ -1,3 +1,4 @@
+import { BsCloudPlus } from 'react-icons/bs';
 import './Header.css';
 
 interface HeaderProps {
@@ -18,10 +19,10 @@ export default function Header({onOpen, browsePage, homePage, modalAddSong, clea
 
   return (
     <header>
-      <button onClick={homePage}><h1 className="app-name">NoiseNebula</h1></button>
+      <button onClick={homePage} className="app-name">noiseNebula</button>
       <nav>
         <button onClick={browsePage}>Browse All</button>
-        <button onClick={onClick}>+</button>
+        <button onClick={onClick}><BsCloudPlus size={34}/></button>
       </nav>
     </header>
   );

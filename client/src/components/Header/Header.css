@@ -2,13 +2,36 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background: white;
+}
+
+.app-name {
+  font-size: 2rem;
 }
 
 header a {
   text-decoration: none;
 }
 
+header button {
+  font-family: 'Open Sans', sans-serif;
+  background: none;
+  border: none;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+header button:hover {
+  color: darkgrey;
+}
+
 nav {
   display: flex;
   align-items: center;
+  gap: 2rem;
+  margin-right: 2rem;
 }

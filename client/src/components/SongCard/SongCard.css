@@ -11,6 +11,7 @@
 .song-card h2,
 .song-card h3 {
   margin: 0;
+  font-weight: inherit;
 }
 
 .options {
