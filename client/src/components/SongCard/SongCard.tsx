@@ -23,7 +23,7 @@ export default function SongCard({ song, onOpen, modalContent, setSelectedSong}:
         <h2>{song.title}</h2>
         <h3>{song.artist}</h3>
       </div>
-      <BsThreeDotsVertical onClick={onClick}/>
+      <BsThreeDotsVertical onClick={onClick} className='options'/>
     </div>
   )
 };

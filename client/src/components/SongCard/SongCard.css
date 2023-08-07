@@ -12,3 +12,7 @@
 .song-card h3 {
   margin: 0;
 }
+
+.options {
+  cursor: pointer;
+}

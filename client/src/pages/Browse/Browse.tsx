@@ -1,5 +1,4 @@
 import SongCard from '../../components/SongCard/SongCard';
-import Modal from '../../components/Modal/Modal';
 import * as SongModel from '../../models/song';
 import "./Browse.css";
 

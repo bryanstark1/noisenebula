@@ -1,6 +1,5 @@
 import AddSongForm from './AddSongForm/AddSongForm';
 import SongDetails from './SongDetails/SongDetails';
-import { fetchSong } from '../../utilities/songs-api';
 import * as SongModel from '../../models/song';
 import './Modal.css';
 

@@ -1,6 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import { useForm } from "react-hook-form";
-import { Song } from "../../../models/song";
+import React, { useState } from "react";
+import * as SongModel from "../../../models/song";
 import * as SongsApi from '../../../utilities/songs-api';
 
 interface AddSongFormProps {

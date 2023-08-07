@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import * as SongModel from './models/song';
 import * as SongsApi from './utilities/songs-api';
 import Browse from './pages/Browse/Browse';
@@ -43,9 +42,9 @@ export default function App() {
     setModalContent('SongDetails');
   };
 
-  function modalEditSong() {
-    setModalContent('EditSongForm');
-  };
+  // function modalEditSong() {
+  //   setModalContent('EditSongForm');
+  // };
 
   return (
     <div className="App">
