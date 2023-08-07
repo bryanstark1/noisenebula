@@ -5,9 +5,11 @@ import * as SongsApi from './utilities/songs-api';
 import Browse from './pages/Browse/Browse';
 import Header from './components/Header/Header';
 import Modal from './components/Modal/Modal'
+import './App.css';
 
 export default function App() {
   const [songs, setSongs] = useState<SongModel[]>([]);
+  const [showPage, setShowPage] = useState('home');
   const [showModal, setShowModal] = useState(false);
 
   async function fetchSongs() {
@@ -23,14 +25,25 @@ export default function App() {
     fetchSongs();
   }, []);
 
+  function openModal() {
+    setShowModal(true);
+  };
+
+  function closeModal() {
+    setShowModal(false);
+  };
+
   return (
     <div className="App">
-      <Header onOpen={() => setShowModal(true)} />
-      <Routes>
-        <Route path='/songs' element={<Browse songs={songs} />} />
-      </Routes>
+      <Header
+        onOpen={() => setShowModal(true)}
+        browsePage={() => setShowPage('browse')}
+        homePage={() => setShowPage('home')} />
+      {showPage === 'browse' &&
+        <Browse songs={songs} onOpen={openModal} />
+      }
       {showModal &&
-        <Modal onClose={() => setShowModal(false)} fetchSongs={fetchSongs}/>
+        <Modal onClose={closeModal} fetchSongs={fetchSongs}/>
       }
     </div>
   );

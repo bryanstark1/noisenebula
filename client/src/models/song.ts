@@ -12,4 +12,5 @@ export interface Song {
 
 export interface SongProps {
   song: Song,
+  onOpen: () => void
 }

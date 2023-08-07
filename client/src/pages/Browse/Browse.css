@@ -1,0 +1,9 @@
+.songs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.browse-page h1 {
+  align-self: flex-start;
+}

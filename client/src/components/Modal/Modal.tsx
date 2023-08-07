@@ -16,8 +16,8 @@ export default function Modal({onClose, fetchSongs}: ModalProps) {
           <h2>Add Song</h2>
         </div>
         <AddSongForm fetchSongs={fetchSongs} onClose={onClose}/>
-        {/* ADD FORM COMPONENT DEPENDING ON ADDING OR EDITING SONG*/}
-      {/* <button className='button' onClick={() => setShowForm(!showForm)}>{showForm ? 'Item Details' : 'Edit Item'}</button> */}
+        {/* ADD COMPONENT DEPENDING ON ADDING, VIEWING OR EDITING SONG*/}
+        {/* <button className='button' onClick={() => setShowForm(!showForm)}>{showForm ? 'Item Details' : 'Edit Item'}</button> */}
       </div>
     </div>
   );

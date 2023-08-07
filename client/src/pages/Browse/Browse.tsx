@@ -1,17 +1,23 @@
-import Song from '../../components/Song/Song';
-// import * as SongModel from '../../models/song';
+import SongCard from '../../components/SongCard/SongCard';
+import Modal from '../../components/Modal/Modal';
+import "./Browse.css";
 
-export default function Browse({ songs }: any) {
+interface BrowseProps {
+  songs: any,
+  onOpen: () => void,
+};
+
+export default function Browse({ songs, onOpen}: BrowseProps) {
   const songsList = songs.map((s: any) => {
-    return <Song song={s} key={s._id}/>
+    return <SongCard song={s} key={s._id} onOpen={onOpen}/>
   });
 
   return (
-    <div>
+    <main className='browse-page'>
       <h1>Browse</h1>
       <div>
-        <div>{songsList}</div>
+        <div className='songs-list'>{songsList}</div>
       </div>
-    </div>
+    </main>
   )
 };

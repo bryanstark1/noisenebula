@@ -15,16 +15,6 @@ export default function AddSongForm({ fetchSongs, onClose }: AddSongFormProps) {
     album: '',
   });
 
-  // const { register, handleSubmit, formState : { errors, isSubmitting } } = useForm<SongsApi.SongInput>();
-
-  // async function onSubmit(input: SongsApi.SongInput) {
-  //   try {
-  //     const songResponse = await SongsApi.addSong(input);
-  //   } catch (error) {
-  //     console.error(error);
-  //   };
-  // };
-
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newSongData = { ...newSong, [e.target.name]: e.target.value };
     setNewSong(newSongData);

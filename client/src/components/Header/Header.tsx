@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-interface ModalProps {
+interface HeaderProps {
   onOpen: () => void,
+  browsePage: () => void
+  homePage: () => void
 }
 
-export default function Header({onOpen}: ModalProps) {
+export default function Header({onOpen, browsePage, homePage}: HeaderProps) {
   return (
     <header>
-      <Link to=''><h1 className="app-name">NoiseNebula</h1></Link>
+      <button onClick={homePage}><h1 className="app-name">NoiseNebula</h1></button>
       <nav>
-        <Link to='/songs'>Browse</Link>
+        <button onClick={browsePage}>Browse All</button>
         <button onClick={onOpen}>+</button>
       </nav>
     </header>
