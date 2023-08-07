@@ -34,14 +34,17 @@ export default function AddSongForm({ fetchSongs, onClose }: AddSongFormProps) {
 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='title'>Title</label>
-      <input type="text" name='title' placeholder='Title' onChange={handleChange} />
-      <label htmlFor='artist'>Artist</label>
-      <input type="text" name='artist' placeholder='Artist' onChange={handleChange} />
-      <label htmlFor='album'>Album</label>
-      <input type="text" name='album' placeholder='Album' onChange={handleChange} />
-      <button type='submit'>Submit</button>
-    </form>
+    <div className='modal-content-container'>
+      <h2>Add Song</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor='title'>Title</label>
+        <input type="text" name='title' placeholder='Title' onChange={handleChange} />
+        <label htmlFor='artist'>Artist</label>
+        <input type="text" name='artist' placeholder='Artist' onChange={handleChange} />
+        <label htmlFor='album'>Album</label>
+        <input type="text" name='album' placeholder='Album' onChange={handleChange} />
+        <button type='submit'>Submit</button>
+      </form>
+    </div>
   );
 };

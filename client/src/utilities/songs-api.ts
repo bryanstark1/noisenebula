@@ -17,6 +17,11 @@ export async function fetchSongs(): Promise<SongModel.Song[]> {
   return response.json();
 };
 
+export async function fetchSong(songId: string): Promise<SongModel.Song> {
+  const response = await fetchData(`http://localhost:4000/songs/${songId}`, { method: "GET" });
+  return response.json();
+};
+
 export interface SongInput {
   title: string,
   artist: string,
@@ -35,7 +40,7 @@ export async function addSong(song: SongInput): Promise<SongModel.Song> {
 };
 
 export async function updateSong(songId: string, song: SongInput): Promise<SongModel.Song> {
-  const response = await fetchData(`/songs/${songId}`, {
+  const response = await fetchData(`http://localhost:4000/songs/${songId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -46,5 +51,5 @@ export async function updateSong(songId: string, song: SongInput): Promise<SongM
 };
 
 export async function deleteSong(songId: string) {
-  await fetchData(`/songs/${songId}`, { method: "DELETE" });
+  await fetchData(`http://localhost:4000/songs/${songId}`, { method: "DELETE" });
 };
