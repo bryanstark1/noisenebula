@@ -3,17 +3,17 @@ import { BsThreeDotsVertical } from "react-icons/bs"
 import './SongCard.css';
 
 interface SongCardProps {
-  modalContent: () => void,
+  modalSongDetails: () => void,
   song: any,
   onOpen: () => void,
   setSelectedSong: (value: string) => void,
 }
 
-export default function SongCard({ song, onOpen, modalContent, setSelectedSong}: SongCardProps) {
+export default function SongCard({ song, onOpen, modalSongDetails, setSelectedSong}: SongCardProps) {
 
   function onClick() {
     onOpen();
-    modalContent();
+    modalSongDetails();
     setSelectedSong(song);
   }
 

@@ -35,30 +35,35 @@ export default function App() {
   };
 
   function modalAddSong() {
-    setModalContent('AddSongForm');
+    setModalContent('AddSong');
   };
 
   function modalSongDetails() {
     setModalContent('SongDetails');
   };
 
-  // function modalEditSong() {
-  //   setModalContent('EditSongForm');
-  // };
+  function modalEditSong() {
+    setModalContent('EditSong');
+  };
+
+  function clearSelectedSong() {
+    setSelectedSong('')
+  }
 
   return (
     <div className="App">
       <Header
           onOpen={openModal}
-          modalContent={modalAddSong}
+          modalAddSong={modalAddSong}
           browsePage={() => setShowPage('browse')}
           homePage={() => setShowPage('home')}
+          clearSelectedSong={clearSelectedSong}
         />
       {showPage === 'browse' &&
         <Browse
           songs={songs}
           onOpen={openModal}
-          modalContent={modalSongDetails}
+          modalSongDetails={modalSongDetails}
           setSelectedSong={setSelectedSong}
         />
       }
@@ -66,6 +71,7 @@ export default function App() {
         <Modal
           onClose={closeModal}
           modalContent={modalContent}
+          modalEditSong={modalEditSong}
           fetchSongs={fetchSongs}
           selectedSong={selectedSong}
         />

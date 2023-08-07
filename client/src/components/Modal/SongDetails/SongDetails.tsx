@@ -5,10 +5,11 @@ interface SongDetailsProps {
   selectedSong: Song,
   fetchSongs: () => void,
   onClose: () => void,
+  modalEditSong: () => void,
 }
 
 
-export default function SongDetails({ selectedSong, fetchSongs, onClose }: SongDetailsProps) {
+export default function SongDetails({ selectedSong, fetchSongs, onClose, modalEditSong }: SongDetailsProps) {
   async function removeSong(id: string) {
     await SongsApi.deleteSong(id);
     fetchSongs();
@@ -17,10 +18,10 @@ export default function SongDetails({ selectedSong, fetchSongs, onClose }: SongD
 
   return (
     <div>
-      <h4>Song Details</h4>
       <h2>{selectedSong.title}</h2>
       <h3>{selectedSong.artist}</h3>
       <h3>{selectedSong.album}</h3>
+      <button onClick={() => modalEditSong()}>Edit Song</button>
       <button onClick={() => removeSong(selectedSong._id)}>Delete Song</button>
     </div>
   );

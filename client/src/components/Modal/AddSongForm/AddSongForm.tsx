@@ -5,13 +5,18 @@ import * as SongsApi from '../../../utilities/songs-api';
 interface AddSongFormProps {
   fetchSongs: () => void,
   onClose: () => void,
+  selectedSong: SongModel.Song,
+  modalContent: string,
 };
 
-export default function AddSongForm({ fetchSongs, onClose }: AddSongFormProps) {
+export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalContent }: AddSongFormProps) {
   const [newSong, setNewSong] = useState({
-    title: '',
-    artist: '',
-    album: '',
+    title: selectedSong?.title || '',
+    artist: selectedSong?.artist || '',
+    album: selectedSong?.album || '',
+    // title: '',
+    // artist: '',
+    // album: '',
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -19,9 +24,13 @@ export default function AddSongForm({ fetchSongs, onClose }: AddSongFormProps) {
     setNewSong(newSongData);
   };
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>, ) {
     e.preventDefault();
-    await SongsApi.addSong(newSong);
+    if (modalContent === 'EditSong') {
+      await SongsApi.updateSong(selectedSong._id, newSong);
+    } else {
+      await SongsApi.addSong(newSong);
+    };
     setNewSong({
       title: '',
       artist: '',
@@ -34,14 +43,14 @@ export default function AddSongForm({ fetchSongs, onClose }: AddSongFormProps) {
 
   return (
     <div className='modal-content-container'>
-      <h2>Add Song</h2>
+      <h2>{(modalContent === 'EditSong') && "Edit Song"}{modalContent === 'AddSong' && 'Add Song'}</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor='title'>Title</label>
-        <input type="text" name='title' placeholder='Title' onChange={handleChange} />
+        <input type="text" name='title' placeholder='Title' onChange={handleChange} defaultValue={selectedSong?.title} />
         <label htmlFor='artist'>Artist</label>
-        <input type="text" name='artist' placeholder='Artist' onChange={handleChange} />
+        <input type="text" name='artist' placeholder='Artist' onChange={handleChange} defaultValue={selectedSong?.artist} />
         <label htmlFor='album'>Album</label>
-        <input type="text" name='album' placeholder='Album' onChange={handleChange} />
+        <input type="text" name='album' placeholder='Album' onChange={handleChange} defaultValue={selectedSong?.album} />
         <button type='submit'>Submit</button>
       </form>
     </div>

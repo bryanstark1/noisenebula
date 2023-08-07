@@ -4,14 +4,16 @@ interface HeaderProps {
   onOpen: () => void,
   browsePage: () => void,
   homePage: () => void,
-  modalContent: () => void,
+  modalAddSong: () => void,
+  clearSelectedSong: () => void,
 }
 
-export default function Header({onOpen, browsePage, homePage, modalContent}: HeaderProps) {
+export default function Header({onOpen, browsePage, homePage, modalAddSong, clearSelectedSong}: HeaderProps) {
 
   function onClick() {
     onOpen();
-    modalContent();
+    modalAddSong();
+    clearSelectedSong();
   };
 
   return (
