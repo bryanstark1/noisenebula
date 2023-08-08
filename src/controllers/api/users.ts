@@ -1,7 +1,7 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import UserModel from '../../models/user';
-import { RequestHandler, Response, Request } from "express";
+import { RequestHandler, Request, Response } from "express";
 
 interface SignUpBody {
   username: string,
@@ -9,7 +9,12 @@ interface SignUpBody {
   password: string,
 };
 
-export const create: RequestHandler<unknown, unknown, SignUpBody, unknown> = async (req, res) => {
+interface LoginBody {
+  email: string,
+  password: string,
+};
+
+export const create = async (req: Request, res: Response) => {
   try {
     const user = await UserModel.create(req.body)
     const token = createJWT(user);
@@ -19,9 +24,9 @@ export const create: RequestHandler<unknown, unknown, SignUpBody, unknown> = asy
   };
 };
 
-export const login: RequestHandler = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
   try {
-    const user = await UserModel.findOne({ email: req.body.params });
+    const user = await UserModel.findOne({ email: req.body.email });
     if (!user) throw new Error();
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();

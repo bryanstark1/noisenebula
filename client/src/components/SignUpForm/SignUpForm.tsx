@@ -25,7 +25,7 @@ export default function SignUpForm({ setUser }: SignUpFormProps) {
     try {
       const newUser = await signUp(userData);
       setUserData(newUser);
-      // setUser(newUser);
+      setUser(newUser);
     } catch {
       setError('Log In Failed - Try Again')
     }

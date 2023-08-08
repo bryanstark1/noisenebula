@@ -12,7 +12,7 @@ import Modal from './components/Modal/Modal'
 import './App.css';
 
 export default function App() {
-  const [user, setUser] = useState('Bryan');
+  const [user, setUser] = useState(getUser());
   const [songs, setSongs] = useState<SongModel.Song[]>([]);
   const [showPage, setShowPage] = useState('home');
   const [showModal, setShowModal] = useState(false);

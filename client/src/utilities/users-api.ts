@@ -8,5 +8,6 @@ export async function signUp(userData: any): Promise<any> {
 };
 
 export async function login(credentials: any): Promise<any> {
+  console.log(credentials)
   return sendRequest(`${BASE_URL}/login`, 'POST', credentials);
 };

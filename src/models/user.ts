@@ -1,7 +1,13 @@
-import mongoose, { InferSchemaType, model, Schema } from "mongoose";
+import mongoose, { InferSchemaType, model, Schema, Document } from "mongoose";
 import bcrypt from 'bcrypt';
 
 const SALT_ROUNDS = 6;
+
+interface SignUpBody extends Document {
+  username: string,
+  email: string,
+  password: string,
+};
 
 const userSchema: Schema = new Schema(
   {
@@ -14,23 +20,28 @@ const userSchema: Schema = new Schema(
       type: String,
       required: true,
       unique: true,
-      select: false,
+      // select: false,
       trim: true,
       lowercase: true,
     },
     password: {
       type: String,
       required: false,
-      select: false,
+      // select: false,
     }
-  },
-  { timestamps: true }
+  },{
+    timestamps: true,
+    toJSON: {
+      transform: function(doc, ret) {
+        delete ret.password;
+        return ret;
+      }}},
 );
 
 
 userSchema.pre('save', async function(next) {
   // 'this' is the user document
-  if (!this.isModified('passoword')) return next();
+  if (!this.isModified('password')) return next();
   // Replace the password with the computed hash
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
 });

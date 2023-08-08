@@ -1,7 +1,9 @@
 import * as usersAPI from './users-api';
 
 export async function signUp(userData: any) {
+  console.log(userData)
   const token = await usersAPI.signUp(userData);
+  console.log(token)
   localStorage.setItem('token', token);
   return getUser();
 }
@@ -11,12 +13,13 @@ export async function login(credentials: any) {
   // module.
   const token = await usersAPI.login(credentials);
   localStorage.setItem('token', token);
+  console.log(credentials)
   return getUser();
-}
+};
 
 export function logOut() {
   localStorage.removeItem('token');
-}
+};
 
 export function getToken() {
   // getItem will return null if the key does not exists
