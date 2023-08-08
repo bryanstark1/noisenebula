@@ -16,7 +16,7 @@ export default function Profile({ user, setUser }: ProfileProps) {
       {user &&
       <>
         <h1>Profile</h1>
-        <h2>{user.username}</h2>
+        <h2>Welcome, {user.username}!</h2>
       </>
       ||
       <>

@@ -3,6 +3,7 @@ import * as SongModel from './models/song';
 import * as SongsApi from './utilities/songs-api';
 import { getUser } from './utilities/users-service';
 
+import Home from './pages/Home/Home';
 import Browse from './pages/Browse/Browse';
 import Profile from './pages/Profile/Profile';
 import Header from './components/Header/Header';
@@ -11,7 +12,7 @@ import Modal from './components/Modal/Modal'
 import './App.css';
 
 export default function App() {
-  const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState('Bryan');
   const [songs, setSongs] = useState<SongModel.Song[]>([]);
   const [showPage, setShowPage] = useState('home');
   const [showModal, setShowModal] = useState(false);
@@ -31,44 +32,23 @@ export default function App() {
     fetchSongs();
   }, []);
 
-  function openModal() {
-    setShowModal(true);
-  };
-
-  function closeModal() {
-    setShowModal(false);
-  };
-
-  function modalAddSong() {
-    setModalContent('AddSong');
-  };
-
-  function modalSongDetails() {
-    setModalContent('SongDetails');
-  };
-
-  function modalEditSong() {
-    setModalContent('EditSong');
-  };
-
-  function clearSelectedSong() {
-    setSelectedSong('')
-  }
-
   return (
     <div className="App">
       <Header
-          onOpen={openModal}
-          modalAddSong={modalAddSong}
+          onOpen={() => setShowModal(true)}
+          modalAddSong={() => setModalContent('AddSong')}
           browsePage={() => setShowPage('browse')}
           homePage={() => setShowPage('home')}
-          clearSelectedSong={clearSelectedSong}
+          clearSelectedSong={() => setSelectedSong('')}
         />
+      {showPage === 'home' &&
+        <Home />
+      }
       {showPage === 'browse' &&
         <Browse
           songs={songs}
-          onOpen={openModal}
-          modalSongDetails={modalSongDetails}
+          onOpen={() => setShowModal(true)}
+          modalSongDetails={() => setModalContent('SongDetails')}
           setSelectedSong={setSelectedSong}
         />
       }
@@ -80,14 +60,15 @@ export default function App() {
       }
       {showModal &&
         <Modal
-          onClose={closeModal}
+          onClose={() => setShowModal(false)}
           modalContent={modalContent}
-          modalEditSong={modalEditSong}
+          modalEditSong={() => setModalContent('EditSong')}
           fetchSongs={fetchSongs}
           selectedSong={selectedSong}
         />
       }
       <Footer
+        homePage={() => setShowPage('home')}
         browsePage={() => setShowPage('browse')}
         profilePage={() => setShowPage('profile')}
       />

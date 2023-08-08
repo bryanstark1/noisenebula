@@ -1,12 +1,11 @@
 .songs-list {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
   width: 100%;
   align-items: center;
 }
 
-.browse-page h1 {
+main h1 {
   color: #28282B;
   align-self: flex-end;
   margin-right: 2rem;

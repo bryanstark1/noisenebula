@@ -1,5 +1,6 @@
 footer {
   display: flex;
+  justify-content: space-evenly;
   background-color: #28282B;
   color: white;
   position: fixed;

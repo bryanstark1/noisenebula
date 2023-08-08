@@ -22,7 +22,7 @@ export default function Header({onOpen, browsePage, homePage, modalAddSong, clea
       <button onClick={homePage} className="app-name">noise<span>Nebula</span></button>
       <nav>
         {/* <button onClick={browsePage}>Browse All</button> */}
-        <button onClick={onClick}><BsCloudPlus className='add-song' size={34}/></button>
+        <button onClick={onClick}><BsCloudPlus className='add-song' size={40}/></button>
       </nav>
     </header>
   );

@@ -44,7 +44,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
 
   return (
     <div className='form-container'>
-      <h2>{(modalContent === 'EditSong') && "Edit Song"}{modalContent === 'AddSong' && 'Add Song'}</h2>
+      <h2>{(modalContent === 'EditSong') && "Edit Song"}{(modalContent === 'AddSong') && 'Add Song'}</h2>
       <form onSubmit={handleSubmit}>
         <div className='grid-container'>
           <label htmlFor='title'>Title</label>

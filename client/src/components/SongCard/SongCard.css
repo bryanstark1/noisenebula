@@ -2,25 +2,29 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #28282B;
-  width: 98%;
+  border-bottom: 1px solid #5e5e5e;
+  width: 100%;
   padding: 1rem 0;
 }
 
+.song-card:first-of-type {
+  border-top: 1px solid #5e5e5e;
+}
+
 .song-card:hover {
-  background-color: #f1f1f1;
+  box-shadow: inset 0px 1px 10px 0px rgba(0,0,0,.2);
 }
 
 .song-info {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: .5rem;
   margin-left: 1rem;
 }
 
 .song-card .song-title {
   margin: 0;
-  font-size: 1.65rem;
+  font-size: 1rem;
   color: #28282B;
 }
 
@@ -29,15 +33,35 @@
   color: #5e5e5e;
   margin: 0;
   font-weight: inherit;
-  font-size: 1.25rem;
+  font-size: .85rem;
 }
 
 .options {
   cursor: pointer;
   margin-right: 1rem;
-  color: #28282B;
+  color: #5e5e5e;
 }
 
 .options:hover {
-  color: #5e5e5e;
+  color: #28282B;
 }
+
+.song-card:nth-of-type(even) {
+  background-color: #f1f1f1;
+}
+
+
+@media only screen and (min-width: 480px) {
+  .song-info {
+    gap: 1rem;
+  }
+
+  .song-card .song-title {
+    font-size: 1.5rem
+  }
+
+  .song-card .song-artist,
+  .song-card .song-album {
+    font-size: 1rem
+  }
+};
