@@ -3,6 +3,8 @@ import * as SongsCtrl from "../controllers/api/songs";
 
 const router: Router = Router();
 
+// All paths start with /songs
+
 // GET All songs
 router.get("/", SongsCtrl.getSongs);
 // GET One song

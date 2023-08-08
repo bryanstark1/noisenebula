@@ -7,6 +7,6 @@ export interface User {
   updatedAt: string,
 };
 
-export interface SongProps {
+export interface UserProps {
   user: User,
 };

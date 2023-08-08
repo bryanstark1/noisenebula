@@ -25,7 +25,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
     setNewSong(newSongData);
   };
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>, ) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (modalContent === 'EditSong') {
       await SongsApi.updateSong(selectedSong._id, newSong);

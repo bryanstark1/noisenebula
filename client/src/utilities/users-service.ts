@@ -1,5 +1,23 @@
 import * as usersAPI from './users-api';
 
+export async function signUp(userData: any) {
+  const token = await usersAPI.signUp(userData);
+  localStorage.setItem('token', token);
+  return getUser();
+}
+
+export async function login(credentials: any) {
+  // Delegate the AJAX request to the users-api.js
+  // module.
+  const token = await usersAPI.login(credentials);
+  localStorage.setItem('token', token);
+  return getUser();
+}
+
+export function logOut() {
+  localStorage.removeItem('token');
+}
+
 export function getToken() {
   // getItem will return null if the key does not exists
   const token = localStorage.getItem('token');

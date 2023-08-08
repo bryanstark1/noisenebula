@@ -4,6 +4,7 @@ import * as SongsApi from './utilities/songs-api';
 import { getUser } from './utilities/users-service';
 
 import Browse from './pages/Browse/Browse';
+import Profile from './pages/Profile/Profile';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Modal from './components/Modal/Modal'
@@ -71,6 +72,12 @@ export default function App() {
           setSelectedSong={setSelectedSong}
         />
       }
+      {showPage === 'profile' &&
+        <Profile
+          user={user}
+          setUser={setUser}
+        />
+      }
       {showModal &&
         <Modal
           onClose={closeModal}
@@ -80,7 +87,10 @@ export default function App() {
           selectedSong={selectedSong}
         />
       }
-      <Footer></Footer>
+      <Footer
+        browsePage={() => setShowPage('browse')}
+        profilePage={() => setShowPage('profile')}
+      />
     </div>
   );
 };
