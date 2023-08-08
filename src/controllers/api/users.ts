@@ -19,6 +19,19 @@ export const create: RequestHandler<unknown, unknown, SignUpBody, unknown> = asy
   };
 };
 
+export const login: RequestHandler = async (req, res) => {
+  try {
+    const user = await UserModel.findOne({ email: req.body.params });
+    if (!user) throw new Error();
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) throw new Error();
+    const token = createJWT(user);
+    res.json(token);
+  } catch (error) {
+    res.status(400).json('Bad Credentials');
+  };
+};
+
 /*--- Helper Functions --*/
 
 const SECRET: Secret = `${process.env.SECRET}`

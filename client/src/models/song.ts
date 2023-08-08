@@ -8,9 +8,9 @@ export interface Song {
   playCount: number,
   createdAt: string,
   updatedAt: string,
-}
+};
 
 export interface SongProps {
   song: Song,
-  onOpen: () => void
-}
+  onOpen: () => void,
+};

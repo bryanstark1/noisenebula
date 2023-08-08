@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import * as SongModel from './models/song';
 import * as SongsApi from './utilities/songs-api';
+import { getUser } from './utilities/users-service';
+
 import Browse from './pages/Browse/Browse';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -8,6 +10,7 @@ import Modal from './components/Modal/Modal'
 import './App.css';
 
 export default function App() {
+  const [user, setUser] = useState(getUser());
   const [songs, setSongs] = useState<SongModel.Song[]>([]);
   const [showPage, setShowPage] = useState('home');
   const [showModal, setShowModal] = useState(false);
