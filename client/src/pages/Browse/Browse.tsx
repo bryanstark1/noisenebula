@@ -17,9 +17,7 @@ export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSon
   return (
     <main className='browse-page'>
       <h1>Browse All</h1>
-      <div>
-        <div className='songs-list'>{songsList}</div>
-      </div>
+      <div className='songs-list'>{songsList}</div>
     </main>
   )
 };

@@ -2,18 +2,42 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid black;
-  width: 350px;
-  margin: 0 2rem;
-  padding: 0 1rem;
+  border: 1px solid #28282B;
+  width: 98%;
+  padding: 1rem 0;
 }
 
-.song-card h2,
-.song-card h3 {
+.song-card:hover {
+  background-color: #f1f1f1;
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.song-card .song-title {
+  margin: 0;
+  font-size: 1.65rem;
+  color: #28282B;
+}
+
+.song-card .song-artist,
+.song-card .song-album {
+  color: #5e5e5e;
   margin: 0;
   font-weight: inherit;
+  font-size: 1.25rem;
 }
 
 .options {
   cursor: pointer;
+  margin-right: 1rem;
+  color: #28282B;
+}
+
+.options:hover {
+  color: #5e5e5e;
 }

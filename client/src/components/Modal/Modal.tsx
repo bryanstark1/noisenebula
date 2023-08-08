@@ -1,4 +1,4 @@
-import AddSongForm from './AddSongForm/AddSongForm';
+import SongForm from './SongForm/SongForm';
 import SongDetails from './SongDetails/SongDetails';
 import * as SongModel from '../../models/song';
 import './Modal.css';
@@ -17,16 +17,11 @@ export default function Modal({ modalContent, modalEditSong, onClose, fetchSongs
     <div className="modalDiv">
       <div className="modal">
         <button onClick={onClose} className='close-button'>X</button>
-        {/* {modalContent === '' &&
-          <AddSongForm fetchSongs={fetchSongs} onClose={onClose} selectedSong={selectedSong} modalContent={modalContent}/>
-        } */}
         {modalContent === 'SongDetails' &&
           <SongDetails selectedSong={selectedSong} fetchSongs={fetchSongs} onClose={onClose} modalEditSong={modalEditSong} />
         ||
-          <AddSongForm fetchSongs={fetchSongs} onClose={onClose} selectedSong={selectedSong} modalContent={modalContent}/>
+          <SongForm fetchSongs={fetchSongs} onClose={onClose} selectedSong={selectedSong} modalContent={modalContent}/>
         }
-        {/* ADD COMPONENT DEPENDING ON ADDING, VIEWING OR EDITING SONG*/}
-        {/* <button className='button' onClick={() => setShowForm(!showForm)}>{showForm ? 'Item Details' : 'Edit Item'}</button> */}
       </div>
     </div>
   );

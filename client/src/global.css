@@ -1,5 +1,6 @@
 html {
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -11,6 +12,10 @@ body {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+}
+
+#root {
   height: 100%;
 }
 

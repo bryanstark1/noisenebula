@@ -20,10 +20,11 @@ export default function SongCard({ song, onOpen, modalSongDetails, setSelectedSo
   return (
     <div className='song-card'>
       <div className='song-info'>
-        <h2>{song.title}</h2>
-        <h3>{song.artist}</h3>
+        <p className='song-title'>{song.title}</p>
+        <p className='song-artist'>{song.artist}</p>
+        <p className='song-album'>{song.album && song.album}</p>
       </div>
-      <BsThreeDotsVertical onClick={onClick} className='options'/>
+      <BsThreeDotsVertical size={28} onClick={onClick} className='options'/>
     </div>
   )
 };

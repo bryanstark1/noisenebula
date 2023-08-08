@@ -3,6 +3,7 @@ import * as SongModel from './models/song';
 import * as SongsApi from './utilities/songs-api';
 import Browse from './pages/Browse/Browse';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Modal from './components/Modal/Modal'
 import './App.css';
 
@@ -76,6 +77,7 @@ export default function App() {
           selectedSong={selectedSong}
         />
       }
+      <Footer></Footer>
     </div>
   );
 };

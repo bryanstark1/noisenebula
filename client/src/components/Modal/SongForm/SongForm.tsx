@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as SongModel from "../../../models/song";
 import * as SongsApi from '../../../utilities/songs-api';
+import './SongForm.css';
 
 interface AddSongFormProps {
   fetchSongs: () => void,
@@ -42,15 +43,17 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
 
 
   return (
-    <div className='modal-content-container'>
+    <div className='form-container'>
       <h2>{(modalContent === 'EditSong') && "Edit Song"}{modalContent === 'AddSong' && 'Add Song'}</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='title'>Title</label>
-        <input type="text" name='title' placeholder='Title' onChange={handleChange} defaultValue={selectedSong?.title} />
-        <label htmlFor='artist'>Artist</label>
-        <input type="text" name='artist' placeholder='Artist' onChange={handleChange} defaultValue={selectedSong?.artist} />
-        <label htmlFor='album'>Album</label>
-        <input type="text" name='album' placeholder='Album' onChange={handleChange} defaultValue={selectedSong?.album} />
+        <div className='grid-container'>
+          <label htmlFor='title'>Title</label>
+          <input type="text" name='title' placeholder='Title' onChange={handleChange} defaultValue={selectedSong?.title} />
+          <label htmlFor='artist'>Artist</label>
+          <input type="text" name='artist' placeholder='Artist' onChange={handleChange} defaultValue={selectedSong?.artist} />
+          <label htmlFor='album'>Album</label>
+          <input type="text" name='album' placeholder='Album' onChange={handleChange} defaultValue={selectedSong?.album} />
+        </div>
         <button type='submit'>Submit</button>
       </form>
     </div>

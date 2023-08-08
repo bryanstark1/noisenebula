@@ -5,11 +5,18 @@ header {
   position: fixed;
   z-index: 99;
   width: 100%;
-  background: white;
+  background: inherit;
 }
 
 .app-name {
   font-size: 2rem;
+  color: orange;
+  font-weight: 300;
+}
+
+.app-name span {
+  color: #28282B;
+  font-weight: 700;
 }
 
 header a {
@@ -23,10 +30,11 @@ header button {
   padding: 1rem 0;
   font-size: 1.25rem;
   cursor: pointer;
+  color: #28282B;
 }
 
-header button:hover {
-  color: darkgrey;
+header button:hover:not(.app-name) {
+  color: #5e5e5e;
 }
 
 nav {
@@ -34,4 +42,8 @@ nav {
   align-items: center;
   gap: 2rem;
   margin-right: 2rem;
+}
+
+nav .add-song {
+  color: orange;
 }
