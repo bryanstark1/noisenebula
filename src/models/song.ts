@@ -1,12 +1,11 @@
-// import { ISong } from './../types/song';
 import { InferSchemaType, model, Schema } from "mongoose";
 
 const songSchema: Schema = new Schema(
   {
     title: {
-    type: String,
-    required: true,
-  },
+      type: String,
+      required: true,
+    },
     artist: {
       type: String,
       required: true,

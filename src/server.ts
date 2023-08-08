@@ -5,6 +5,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import songRouter from "./routes/songs";
 import indexRouter from './routes/index';
+import userRouter from './routes/users';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use('/', indexRouter);
 app.use('/songs', songRouter);
+app.use('/users', userRouter);
 
 const uri: string = `${process.env.DATABASE_URL}`
 
