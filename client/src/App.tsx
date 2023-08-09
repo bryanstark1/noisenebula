@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import * as SongModel from './models/song';
 import * as SongsApi from './utilities/songs-api';
 import { getUser } from './utilities/users-service';
+import { getSongs } from './utilities/songs-service';
 
 import Home from './pages/Home/Home';
 import Browse from './pages/Browse/Browse';
@@ -21,7 +22,7 @@ export default function App() {
 
   async function fetchSongs() {
     try {
-      const songs = await SongsApi.fetchSongs();
+      const songs = await getSongs();
       setSongs(songs);
     } catch (error) {
       console.log(error);
@@ -40,6 +41,7 @@ export default function App() {
           browsePage={() => setShowPage('browse')}
           homePage={() => setShowPage('home')}
           clearSelectedSong={() => setSelectedSong('')}
+          user={user}
         />
       {showPage === 'home' &&
         <Home />
@@ -50,6 +52,7 @@ export default function App() {
           onOpen={() => setShowModal(true)}
           modalSongDetails={() => setModalContent('SongDetails')}
           setSelectedSong={setSelectedSong}
+          user={user}
         />
       }
       {showPage === 'profile' &&
@@ -65,6 +68,7 @@ export default function App() {
           modalEditSong={() => setModalContent('EditSong')}
           fetchSongs={fetchSongs}
           selectedSong={selectedSong}
+          user={user}
         />
       }
       <Footer

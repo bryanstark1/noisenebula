@@ -1,82 +1,58 @@
 import { Response, Request } from "express";
 import Song from "../../models/song";
 
+
+// const {
+//   S3Client,
+//   PutObjectCommand
+// } = require("@aws-sdk/client-s3");
+
+// const s3Config = {
+//   accessKeyId: process.env.AWS_ACCESS_KEY,
+//   secretAccessKey: process.env.AWS_ACCESS_SECRET,
+//   region: "us-east-1",
+// };
+
+// const s3Client = new S3Client(s3Config);
+
+
 export const getSongs = async (req: Request, res: Response): Promise<void> => {
   try {
-    const songs = await Song.find().exec();
-    res.status(200).json(songs);
+    res.json(await Song.find().exec());
   } catch (error) {
-    throw error;
+    res.status(400).json(error);
   };
 };
 
 export const getSong = async (req: Request, res: Response): Promise<void> => {
-  const songId = req.params.id;
   try {
-    const song = await Song.findById(songId).exec();
-    res.status(200).json(song)
+    res.json(await Song.findById(req.params.id));
   } catch (error) {
-    throw error;
+    res.status(400).json(error);
   };
 };
 
 export const addSong = async (req: Request, res: Response): Promise<void> => {
-  const title = req.body.title;
-  const artist = req.body.artist;
-  const album = req.body.album;
-
   try {
-    const newSong = await Song.create({
-      title: title,
-      artist: artist,
-      album: album,
-    });
-
-    res.status(201).json(newSong);
+    res.json(await Song.create(req.body));
   } catch (error) {
-    throw error;
+    res.status(400).json(error);
   };
 };
 
 export const updateSong = async (req: Request, res: Response): Promise<void> => {
-  interface SongBody {
-    title: string,
-    artist: string,
-    album: string,
-  };
-
-  interface UpdateSong {
-    id: string,
-  }
-
   const songId = req.params.id;
-  const updatedData = req.body;
-
   try {
-    const song = await Song.findById(songId).exec();
-
-    if (!song) {
-      throw ('error');
-    };
-
-    song.title = updatedData.title;
-    song.artist = updatedData.artist;
-    song.album = updatedData.album;
-
-    const updatedSong = await song.save();
-    res.status(200).json(updatedSong);
+    res.json(await Song.findByIdAndUpdate(songId, req.body, { new: true }));
   } catch (error) {
     throw error
   }
 };
 
 export const deleteSong = async (req: Request, res: Response): Promise<void> => {
-  const songId = req.params.id;
-
   try {
-    const song = await Song.findByIdAndRemove(songId).exec();
-    res.sendStatus(204);
+    res.json(await Song.findByIdAndRemove(req.params.id));
   } catch (error) {
-    throw error
+    res.status(400).json(error);
   };
 };

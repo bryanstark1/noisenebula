@@ -8,7 +8,7 @@ const songSchema: Schema = new Schema(
     },
     artist: {
       type: String,
-      required: true,
+      // required: true,
     },
     album: {
       type: String,

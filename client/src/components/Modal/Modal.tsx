@@ -10,18 +10,30 @@ interface ModalProps {
   onClose: () => void,
   fetchSongs: () => void,
   selectedSong: any,
+  user: any,
 }
 
-export default function Modal({ modalContent, modalEditSong, onClose, fetchSongs, selectedSong }: ModalProps) {
+export default function Modal({ modalContent, modalEditSong, onClose, fetchSongs, selectedSong, user }: ModalProps) {
 
   return (
     <div className="modalDiv">
       <div className="modal">
         <button onClick={onClose} className='close-button'><TfiClose /></button>
         {modalContent === 'SongDetails' &&
-          <SongDetails selectedSong={selectedSong} fetchSongs={fetchSongs} onClose={onClose} modalEditSong={modalEditSong} />
+          <SongDetails
+            selectedSong={selectedSong}
+            fetchSongs={fetchSongs}
+            onClose={onClose}
+            modalEditSong={modalEditSong}
+            user={user}
+          />
         ||
-          <SongForm fetchSongs={fetchSongs} onClose={onClose} selectedSong={selectedSong} modalContent={modalContent}/>
+          <SongForm
+            fetchSongs={fetchSongs}
+            onClose={onClose}
+            selectedSong={selectedSong}
+            modalContent={modalContent}
+          />
         }
       </div>
     </div>

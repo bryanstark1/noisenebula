@@ -1,4 +1,7 @@
 import * as SongModel from '../models/song';
+import sendRequest from './send-request';
+
+const BASE_URL = 'http://localhost:4000/songs';
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
   const response = await fetch(input, init);
@@ -11,15 +14,12 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
   };
 };
 
-
-export async function fetchSongs(): Promise<SongModel.Song[]> {
-  const response = await fetchData('http://localhost:4000/songs', { method: "GET" });
-  return response.json();
+export async function getSongs(): Promise<SongModel.Song[]> {
+  return sendRequest(BASE_URL);
 };
 
-export async function fetchSong(songId: string): Promise<SongModel.Song> {
-  const response = await fetchData(`http://localhost:4000/songs/${songId}`, { method: "GET" });
-  return response.json();
+export async function getOneSong(songId: string): Promise<SongModel.Song> {
+  return sendRequest(`${BASE_URL}/${songId}`);
 };
 
 export interface SongInput {
@@ -28,28 +28,14 @@ export interface SongInput {
   album: string,
 };
 
-export async function addSong(song: SongInput): Promise<SongModel.Song> {
-  const response = await fetchData('http://localhost:4000/songs/add', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(song)
-  });
-  return response.json();
+export async function addSong(formData: any): Promise<SongModel.Song> {
+  return sendRequest(`${BASE_URL}/add`, 'POST', formData);
 };
 
-export async function updateSong(songId: string, song: SongInput): Promise<SongModel.Song> {
-  const response = await fetchData(`http://localhost:4000/songs/${songId}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(song)
-  });
-  return response.json();
+export async function updateSong(songId: string, song: any): Promise<SongModel.Song> {
+  return sendRequest(`${BASE_URL}/${songId}`, 'PUT', song);
 };
 
 export async function deleteSong(songId: string) {
-  await fetchData(`http://localhost:4000/songs/${songId}`, { method: "DELETE" });
+  await sendRequest(`${BASE_URL}/${songId}`, 'DELETE');
 };

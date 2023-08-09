@@ -1,18 +1,7 @@
 import jwt, { Secret } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import UserModel from '../../models/user';
-import { RequestHandler, Request, Response } from "express";
-
-interface SignUpBody {
-  username: string,
-  email: string,
-  password: string,
-};
-
-interface LoginBody {
-  email: string,
-  password: string,
-};
+import { Request, Response } from "express";
 
 export const create = async (req: Request, res: Response) => {
   try {

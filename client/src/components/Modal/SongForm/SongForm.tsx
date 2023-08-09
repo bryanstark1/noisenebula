@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as SongModel from "../../../models/song";
-import * as SongsApi from '../../../utilities/songs-api';
+import { updateSong, addSong } from '../../../utilities/songs-service'
 import './SongForm.css';
 
 interface AddSongFormProps {
@@ -28,9 +28,9 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (modalContent === 'EditSong') {
-      await SongsApi.updateSong(selectedSong._id, newSong);
+      await updateSong(selectedSong._id, newSong);
     } else {
-      await SongsApi.addSong(newSong);
+      await addSong(newSong);
     };
     setNewSong({
       title: '',

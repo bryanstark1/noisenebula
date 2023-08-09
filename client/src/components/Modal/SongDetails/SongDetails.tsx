@@ -1,5 +1,5 @@
 import { Song } from "../../../models/song";
-import * as SongsApi from '../../../utilities/songs-api';
+import { deleteSong } from '../../../utilities/songs-service';
 import './SongDetails.css';
 
 interface SongDetailsProps {
@@ -7,12 +7,13 @@ interface SongDetailsProps {
   fetchSongs: () => void,
   onClose: () => void,
   modalEditSong: () => void,
+  user: any,
 }
 
 
-export default function SongDetails({ selectedSong, fetchSongs, onClose, modalEditSong }: SongDetailsProps) {
+export default function SongDetails({ selectedSong, fetchSongs, onClose, modalEditSong, user }: SongDetailsProps) {
   async function removeSong(id: string) {
-    await SongsApi.deleteSong(id);
+    await deleteSong(id);
     fetchSongs();
     onClose();
   };
@@ -22,10 +23,12 @@ export default function SongDetails({ selectedSong, fetchSongs, onClose, modalEd
       <h2 className='song-title'>{selectedSong.title}</h2>
       <h3 className='song-artist'>{selectedSong.artist}</h3>
       <h3 className='song-album'>{selectedSong.album}</h3>
-      <div className='button-container'>
-        <button className='edit-button' onClick={() => modalEditSong()}>Edit Song</button>
-        <button className='delete-button' onClick={() => removeSong(selectedSong._id)}>Delete Song</button>
-      </div>
+      {user && 
+        <div className='button-container'>
+          <button className='edit-button' onClick={() => modalEditSong()}>Edit Song</button>
+          <button className='delete-button' onClick={() => removeSong(selectedSong._id)}>Delete Song</button>
+        </div>
+      }
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { BsCloudPlus } from 'react-icons/bs';
+import { BsCloudPlus, BsCloudy } from 'react-icons/bs';
 import './Header.css';
 
 interface HeaderProps {
@@ -7,9 +7,10 @@ interface HeaderProps {
   homePage: () => void,
   modalAddSong: () => void,
   clearSelectedSong: () => void,
-}
+  user: any,
+};
 
-export default function Header({onOpen, browsePage, homePage, modalAddSong, clearSelectedSong}: HeaderProps) {
+export default function Header({onOpen, browsePage, homePage, modalAddSong, clearSelectedSong, user}: HeaderProps) {
 
   function onClick() {
     onOpen();
@@ -22,7 +23,11 @@ export default function Header({onOpen, browsePage, homePage, modalAddSong, clea
       <button onClick={homePage} className="app-name">noise<span>Nebula</span></button>
       <nav>
         {/* <button onClick={browsePage}>Browse All</button> */}
-        <button onClick={onClick}><BsCloudPlus className='add-song' size={40}/></button>
+        {user &&
+          <button onClick={onClick}><BsCloudPlus className='add-song' size={40}/></button>
+          ||
+          <BsCloudy className='cloud-logo' size={40}/>
+        }
       </nav>
     </header>
   );
