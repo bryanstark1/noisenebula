@@ -45,8 +45,8 @@ export const updateSong = async (req: Request, res: Response): Promise<void> => 
   try {
     res.json(await Song.findByIdAndUpdate(songId, req.body, { new: true }));
   } catch (error) {
-    throw error
-  }
+    res.status(400).json(error);
+  };
 };
 
 export const deleteSong = async (req: Request, res: Response): Promise<void> => {

@@ -15,9 +15,6 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
     title: selectedSong?.title || '',
     artist: selectedSong?.artist || '',
     album: selectedSong?.album || '',
-    // title: '',
-    // artist: '',
-    // album: '',
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {

@@ -25,7 +25,13 @@ const songSchema: Schema = new Schema(
     playCount: {
       type: Number,
       default: 0,
-    }
+    },
+    favorites: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ],
   },
   { timestamps: true }
 );

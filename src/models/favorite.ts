@@ -10,18 +10,6 @@ const favoriteSchema: Schema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Song'
     },
-    // songTitle: {
-    //   type: String,
-    // },
-    // songArtist: {
-    //   type: String,
-    // },
-    // songArtwork: {
-    //   type: String,
-    // },
-    // songPlayCount: {
-    //   type: Number,
-    // }
   }
 );
 

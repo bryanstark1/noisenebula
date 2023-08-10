@@ -53,6 +53,7 @@ export default function App() {
           modalSongDetails={() => setModalContent('SongDetails')}
           setSelectedSong={setSelectedSong}
           user={user}
+          fetchSongs={fetchSongs}
         />
       }
       {showPage === 'profile' &&

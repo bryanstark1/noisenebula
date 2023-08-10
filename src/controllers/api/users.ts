@@ -9,7 +9,7 @@ export const create = async (req: Request, res: Response) => {
     const token = createJWT(user);
     res.json(token);
   } catch (error) {
-    res.status(400).json
+    res.status(400).json(error);
   };
 };
 

@@ -1,5 +1,4 @@
 import sendRequest from "./send-request";
-import * as UserModel from '../models/user';
 
 const BASE_URL = 'http://localhost:4000/users';
 

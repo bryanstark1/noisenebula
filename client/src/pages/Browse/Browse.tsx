@@ -8,9 +8,10 @@ interface BrowseProps {
   onOpen: () => void,
   setSelectedSong: any,
   user: any
+  fetchSongs: () => void,
 };
 
-export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSong, user}: BrowseProps) {
+export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs }: BrowseProps) {
   const songsList = songs.map((s: any) => {
     return <SongCard
       song={s}
@@ -19,6 +20,7 @@ export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSon
       modalSongDetails={modalSongDetails}
       setSelectedSong={setSelectedSong}
       user={user}
+      fetchSongs={fetchSongs}
     />
   });
 
