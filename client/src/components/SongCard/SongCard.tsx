@@ -19,19 +19,30 @@ export default function SongCard({ song, onOpen, modalSongDetails, setSelectedSo
   };
 
   return (
-    <div className='song-card'>
-      <div className='song-info'>
-        <p className='song-title'>{song.title}</p>
-        <p className='song-artist'>{song.artist}</p>
-        -
-        <p className='song-album'>{song.album && song.album}</p>
-      </div>
-      <div className='icon-container'>
-        {user &&
+    // <li className='song-card'>
+    //   <div className='song-info'>
+    //     <p className='song-title'>{song.title}</p>
+    //     <p className='song-artist'>{song.artist}</p>
+    //     -
+    //     <p className='song-album'>{song.album && song.album}</p>
+    //   </div>
+    //   <div className='icon-container'>
+    //     {user &&
+    //       <FavoriteButton user={user} song={song} fetchSongs={fetchSongs} />
+    //     }
+    //     <BsThreeDotsVertical size={28} onClick={openModal} className='options'/>
+    //   </div>
+    // </li>
+    <tr className='song-card'>
+      <td className='song-title'>{song.title}</td>
+      <td className='song-artist'>{song.artist}</td>
+      <td className='song-album'>{song.album}</td>
+      <td className='icon-container'>
+      {user &&
           <FavoriteButton user={user} song={song} fetchSongs={fetchSongs} />
         }
         <BsThreeDotsVertical size={28} onClick={openModal} className='options'/>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 };

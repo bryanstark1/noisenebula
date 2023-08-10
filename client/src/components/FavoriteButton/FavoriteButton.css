@@ -2,4 +2,17 @@
   background-color: inherit;
   border: none;
   padding: 0;
+  cursor: pointer;
+}
+
+.favorite-button:hover {
+  color: orange;
+}
+
+.favorited {
+  color: orange;
+}
+
+.favorited:hover {
+  color: #28282B;
 }

@@ -21,16 +21,27 @@ export default function Library({ songs, onOpen, modalSongDetails, setSelectedSo
         setSelectedSong={setSelectedSong}
         user={user}
         fetchSongs={fetchSongs}
-      />
+      />;
     } else {
-      return null
-    }
+      return null;
+    };
   });
 
   return (
     <main className='library-page'>
       <h1>Library</h1>
-      <div className='songs-list'>{songsList}</div>
+      <table className='songs-list'>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+          </tr>
+        </thead>
+        <tbody>
+          {songsList}
+        </tbody>
+      </table>
     </main>
   )
 };
