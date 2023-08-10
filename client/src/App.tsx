@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import * as SongModel from './models/song';
-import * as SongsApi from './utilities/songs-api';
 import { getUser } from './utilities/users-service';
 import { getSongs } from './utilities/songs-service';
 
 import Home from './pages/Home/Home';
 import Browse from './pages/Browse/Browse';
+import Library from './pages/Library/Library';
 import Profile from './pages/Profile/Profile';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -56,6 +56,16 @@ export default function App() {
           fetchSongs={fetchSongs}
         />
       }
+      {showPage === 'library' &&
+        <Library
+          songs={songs}
+          onOpen={() => setShowModal(true)}
+          modalSongDetails={() => setModalContent('SongDetails')}
+          setSelectedSong={setSelectedSong}
+          user={user}
+          fetchSongs={fetchSongs}
+        />
+      }
       {showPage === 'profile' &&
         <Profile
           user={user}
@@ -76,6 +86,7 @@ export default function App() {
         homePage={() => setShowPage('home')}
         browsePage={() => setShowPage('browse')}
         profilePage={() => setShowPage('profile')}
+        libraryPage={() => setShowPage('library')}
       />
     </div>
   );

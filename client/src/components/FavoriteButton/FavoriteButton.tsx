@@ -34,8 +34,8 @@ export default function FavoriteButton({ user, song, fetchSongs }: FavoriteButto
 
   return (
       <button onClick={updateFavorite} className='favorite-button'>
-        {favorited && 
-        <AiFillHeart size={28}/>
+        {(favorited && 
+        <AiFillHeart size={28}/>)
         ||
         <AiOutlineHeart size={28}/>
         }

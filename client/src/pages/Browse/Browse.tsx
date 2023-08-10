@@ -1,5 +1,4 @@
 import SongCard from '../../components/SongCard/SongCard';
-import * as SongModel from '../../models/song';
 import "./Browse.css";
 
 interface BrowseProps {
