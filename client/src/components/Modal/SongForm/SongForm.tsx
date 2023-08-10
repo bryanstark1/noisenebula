@@ -12,13 +12,20 @@ interface AddSongFormProps {
 
 export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalContent }: AddSongFormProps) {
   const [newSong, setNewSong] = useState({
-    title: selectedSong?.title || '',
-    artist: selectedSong?.artist || '',
-    album: selectedSong?.album || '',
+    title: selectedSong.title || '',
+    artist: selectedSong.artist || '',
+    album: selectedSong.album || '',
+    audioFile: selectedSong.audioFile || '',
+    // artwork: selectedSong.artwork || '',
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newSongData = { ...newSong, [e.target.name]: e.target.value };
+    setNewSong(newSongData);
+  };
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const newSongData = { ...newSong, [e.target.name]: e.currentTarget.files };
     setNewSong(newSongData);
   };
 
@@ -27,12 +34,19 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
     if (modalContent === 'EditSong') {
       await updateSong(selectedSong._id, newSong);
     } else {
-      await addSong(newSong);
+      const formData = new FormData();
+      formData.append("title", newSong.title)
+      formData.append("artist", newSong.artist)
+      formData.append("album", newSong.album)
+      formData.append("audioFile", newSong.audioFile[0])
+      await addSong(formData);
     };
     setNewSong({
       title: '',
       artist: '',
       album: '',
+      audioFile: '',
+      // artwork: '',
     });
     fetchSongs();
     onClose();
@@ -50,6 +64,14 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
           <input type="text" name='artist' placeholder='Artist' onChange={handleChange} defaultValue={selectedSong?.artist} />
           <label htmlFor='album'>Album</label>
           <input type="text" name='album' placeholder='Album' onChange={handleChange} defaultValue={selectedSong?.album} />
+          {(modalContent === 'AddSong') && 
+            <>
+              <label htmlFor="audioFile">Song</label>
+              <input type="file" name='audioFile' accept="audio/*" onChange={handleFileChange}/>
+              {/* <label htmlFor="artwork">Album Artwork</label>
+              <input type="file" name='artwork' accept="image/*"/> onChange={handleFileChange} */}
+            </>
+          }
         </div>
         <button type='submit'>Submit</button>
       </form>

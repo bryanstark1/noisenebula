@@ -12,7 +12,6 @@ const songSchema: Schema = new Schema(
     },
     album: {
       type: String,
-      required: false,
     },
     audioFile: {
       type: String,
@@ -20,7 +19,7 @@ const songSchema: Schema = new Schema(
     },
     artwork: {
       type: String,
-      required: false,
+      default: 'https://i2.wp.com/www.wmhbradio.org/wp-content/uploads/2016/07/music-placeholder.png',
     },
     playCount: {
       type: Number,

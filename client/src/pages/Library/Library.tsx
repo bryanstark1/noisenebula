@@ -33,6 +33,7 @@ export default function Library({ songs, onOpen, modalSongDetails, setSelectedSo
       <table className='songs-list'>
         <thead>
           <tr>
+            <th></th>
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>

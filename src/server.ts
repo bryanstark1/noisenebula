@@ -6,8 +6,6 @@ import dotenv from "dotenv";
 import songRouter from "./routes/songs";
 import indexRouter from './routes/index';
 import userRouter from './routes/users';
-import favoriteRouter from './routes/favorites';
-import fileUpload from 'express-fileupload';
 
 dotenv.config();
 
@@ -18,11 +16,9 @@ const PORT: string | number = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(fileUpload());
 app.use('/', indexRouter);
 app.use('/songs', songRouter);
 app.use('/users', userRouter);
-app.use('/favorites', favoriteRouter);
 
 const uri: string = `${process.env.DATABASE_URL}`
 

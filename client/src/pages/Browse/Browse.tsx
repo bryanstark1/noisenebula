@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import SongCard from '../../components/SongCard/SongCard';
 import "./Browse.css";
 
@@ -12,14 +12,14 @@ interface BrowseProps {
 };
 
 export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs }: BrowseProps) {
-  const [sort, setSort] = useState('titleAscending');
-  const titleDescending = [...songs].sort((a, b) =>
-    a.title > b.title ? -1: 1,
-  );
+  // const [sort, setSort] = useState('titleAscending');
+  // const titleDescending = [...songs].sort((a, b) =>
+  //   a.title > b.title ? -1: 1,
+  // );
 
-  const titleAscending = [...songs].sort((a, b) =>
-    a.title > b.title ? 1: -1,
-  );
+  // const titleAscending = [...songs].sort((a, b) =>
+  //   a.title > b.title ? 1: -1,
+  // );
 
   const songsList = songs.map((s: any) => {
     return <SongCard
@@ -40,6 +40,7 @@ export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSon
       <table className='songs-list'>
         <thead>
           <tr>
+            <th></th>
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>

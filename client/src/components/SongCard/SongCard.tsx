@@ -18,6 +18,7 @@ export default function SongCard({ song, onOpen, modalSongDetails, setSelectedSo
     setSelectedSong(song);
   };
 
+
   return (
     // <li className='song-card'>
     //   <div className='song-info'>
@@ -34,13 +35,14 @@ export default function SongCard({ song, onOpen, modalSongDetails, setSelectedSo
     //   </div>
     // </li>
     <tr className='song-card'>
+      <td className='song-artwork'><img src={song.artwork} alt="" /></td>
       <td className='song-title'>{song.title}</td>
       <td className='song-artist'>{song.artist}</td>
       <td className='song-album'>{song.album}</td>
       <td className='icon-container'>
       {user &&
-          <FavoriteButton user={user} song={song} fetchSongs={fetchSongs} />
-        }
+        <FavoriteButton user={user} song={song} fetchSongs={fetchSongs} />
+      }
         <BsThreeDotsVertical size={28} onClick={openModal} className='options'/>
       </td>
     </tr>

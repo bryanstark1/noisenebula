@@ -1,7 +1,12 @@
 import { Router } from "express";
+import multer from 'multer';
 import * as SongsCtrl from "../controllers/api/songs";
 
 const router: Router = Router();
+
+const storage = multer.memoryStorage();
+
+const upload = multer({ storage: storage });
 
 // All paths start with /songs
 
@@ -10,7 +15,7 @@ router.get("/", SongsCtrl.getSongs);
 // GET One song
 router.get('/:id', SongsCtrl.getSong)
 // POST New song
-router.post("/add", SongsCtrl.addSong);
+router.post("/add", upload.single('audioFile'), SongsCtrl.addSong);
 // PUT Edit song
 router.put("/:id", SongsCtrl.updateSong);
 // DELETE song
