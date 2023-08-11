@@ -16,14 +16,16 @@ interface SongListItemProps {
 export default function SongListItem({ song, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs, setNowPlaying }: SongListItemProps) {
   return (
     <tr className='song-list-item'>
+      <td>
+        {user &&
+          <FavoriteButton user={user} song={song} fetchSongs={fetchSongs} />
+        }
+      </td>
       <td className='song-artwork'><PlayButton song={song} setNowPlaying={setNowPlaying} /><img src={song.artwork} alt={song.album} /></td>
       <td className='song-title'>{song.title}</td>
       <td className='song-artist'>{song.artist}</td>
       <td className='song-album'>{song.album}</td>
       <td className='icon-container'>
-      {user &&
-        <FavoriteButton user={user} song={song} fetchSongs={fetchSongs} />
-      }
         <OptionsButton song={song} onOpen={onOpen} modalSongDetails={modalSongDetails} setSelectedSong={setSelectedSong} />
       </td>
     </tr>

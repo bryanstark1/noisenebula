@@ -33,6 +33,7 @@ export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSon
         <thead>
           <tr>
             <th></th>
+            <th></th>
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>

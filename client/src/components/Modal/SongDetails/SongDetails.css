@@ -5,6 +5,7 @@
   width: 100%;
   margin: auto;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .song-details .song-title {
@@ -26,14 +27,14 @@
 .song-details .modal-button-container {
   display: flex;
   gap: 1rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .song-details button {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding:  .5rem 1rem;
 }
 
 .song-details .song-artwork {
-  height: 350px;
+  height: 300px;
 }

@@ -11,10 +11,9 @@
 }
 
 .form-container .grid-container {
-  display: grid;
-  row-gap: 1.5rem;
-  column-gap: 1rem;
-  grid-template-columns: 1fr 5fr;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin: 1rem 0 2rem 0;
 }
 
@@ -23,6 +22,15 @@
   text-align: end;
   margin: auto 0;
   text-align: justify;
+}
+
+.form-container label:not(.file-upload-label) {
+  display: none;
+}
+
+.form-container .file-upload-input {
+  padding: 0;
+  border-radius: 0;
 }
 
 .form-container input {
@@ -37,3 +45,20 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+@media only screen and (min-width: 480px) {
+  .form-container .grid-contaner {
+    display: grid;
+    row-gap: 1.5rem;
+    column-gap: 1rem;
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .form-container label {
+    display: block;
+    font-size: 1.5rem;
+    text-align: end;
+    margin: auto 0;
+    text-align: justify;
+  }
+};

@@ -69,9 +69,9 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
           <input type="text" name='album' placeholder='Album' onChange={handleChange} defaultValue={selectedSong?.album} />
           {(modalContent === 'AddSong') && 
             <>
-              <label htmlFor="audioFile">Song</label>
-              <input type="file" name='audioFile' accept="audio/*" onChange={handleFileChange}/>
-              {/* <label htmlFor="artwork">Album Artwork</label>
+              <label htmlFor="audioFile" className='file-upload-label'>Song</label>
+              <input className='file-upload-input' type="file" name='audioFile' accept="audio/*" onChange={handleFileChange}/>
+              {/* <label htmlFor="artwork" className='file-upload'>Album Artwork</label>
               <input type="file" name='artwork' accept="image/*"/> onChange={handleFileChange} */}
             </>
           }

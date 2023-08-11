@@ -22,7 +22,7 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
     a.createAt > b.createAt ? -1: 1,
   );
 
-  const mostPlayedList = playCountDescending.map((s: any) => {
+  const tempMostPlayedList = playCountDescending.map((s: any) => {
     return <SongCard
       song={s}
       key={s._id}
@@ -34,8 +34,9 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
       setNowPlaying={setNowPlaying}
     />
   });
+  const mostPlayedList = tempMostPlayedList.slice(0, 10);
 
-  const justAddedList = createdAtAscending.map((s: any) => {
+  const tempJustAddedList = createdAtAscending.map((s: any) => {
     return <SongCard
       song={s}
       key={s._id}
@@ -47,8 +48,9 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
       setNowPlaying={setNowPlaying}
     />
   });
+  const justAddedList = tempJustAddedList.slice(0, 10);
 
-  const mostFavoritedList = favoritedDescending.map((s: any) => {
+  const tempMostFavoritedList = favoritedDescending.map((s: any) => {
     return <SongCard
       song={s}
       key={s._id}
@@ -60,6 +62,7 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
       setNowPlaying={setNowPlaying}
     />
   });
+  const mostFavoritedList = tempMostFavoritedList.slice(0, 10);
 
 
   return (

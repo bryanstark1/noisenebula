@@ -1,5 +1,6 @@
 import { Song } from "../../../models/song";
 import { deleteSong } from '../../../utilities/songs-service';
+import FavoriteButton from "../../FavoriteButton/FavoriteButton";
 import './SongDetails.css';
 
 interface SongDetailsProps {
@@ -25,10 +26,13 @@ export default function SongDetails({ selectedSong, fetchSongs, onClose, modalEd
       <h3 className='song-artist'>{selectedSong.artist}</h3>
       <h3 className='song-album'>{selectedSong.album}</h3>
       {user && 
-        <div className='modal-button-container'>
-          <button className='edit-button' onClick={() => modalEditSong()}>Edit Song</button>
-          <button className='delete-button' onClick={() => removeSong(selectedSong._id)}>Delete Song</button>
-        </div>
+        <>
+          <FavoriteButton user={user} song={selectedSong} fetchSongs={fetchSongs}/>
+          <div className='modal-button-container'>
+            <button className='edit-button' onClick={() => modalEditSong()}>Edit Song</button>
+            <button className='delete-button' onClick={() => removeSong(selectedSong._id)}>Delete Song</button>
+          </div>
+        </>
       }
     </div>
   );
