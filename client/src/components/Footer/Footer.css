@@ -1,14 +1,12 @@
 footer {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   background-color: #28282B;
   color: white;
   position: fixed;
   z-index: 99;
   width: 100%;
   min-height: 100px;
-  /* height: 100px; */
   bottom: 0;
 }
 
@@ -23,12 +21,12 @@ footer button:hover {
   color: white;;
 }
 
-footer button:active {
-  color: orange;
-}
-
 .page-icon-container {
   display: flex;
   justify-content: space-evenly;
   margin: .75rem 0;
+}
+
+.highlight {
+  color: white;
 }

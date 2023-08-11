@@ -14,8 +14,11 @@
 .song-card-container {
   display: flex;
   gap: 1rem;
+  overflow-y: auto;
+  white-space: nowrap;
+  padding-bottom: 1rem;
 }
 
 .carousel-container {
-  margin-left: 1rem;
+  margin: 0 .25rem;
 }

@@ -18,6 +18,9 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
   const createdAtAscending = [...songs].sort((a, b) =>
     a.createAt > b.createAt ? 1: -1,
   );
+  const favoritedDescending = [...songs].sort((a, b) =>
+    a.createAt > b.createAt ? -1: 1,
+  );
 
   const mostPlayedList = playCountDescending.map((s: any) => {
     return <SongCard
@@ -45,11 +48,30 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
     />
   });
 
+  const mostFavoritedList = favoritedDescending.map((s: any) => {
+    return <SongCard
+      song={s}
+      key={s._id}
+      onOpen={onOpen}
+      modalSongDetails={modalSongDetails}
+      setSelectedSong={setSelectedSong}
+      user={user}
+      fetchSongs={fetchSongs}
+      setNowPlaying={setNowPlaying}
+    />
+  });
+
 
   return (
     <main className='home-page'>
       <h1>Home</h1>
       <div className='carousels'>
+        <div className='carousel-container'>
+          <h2 className='carousel-title'>Just Added</h2>
+          <div className='song-card-container'>
+            {justAddedList}
+          </div>
+        </div>
         <div className='carousel-container'>
         <h2 className='carousel-title'>Most Played</h2>
           <div className='song-card-container'>
@@ -57,9 +79,9 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
           </div>
         </div>
         <div className='carousel-container'>
-          <h2 className='carousel-title'>Just Added</h2>
+          <h2 className='carousel-title'>Most Popular</h2>
           <div className='song-card-container'>
-            {justAddedList}
+            {mostFavoritedList}
           </div>
         </div>
       </div>

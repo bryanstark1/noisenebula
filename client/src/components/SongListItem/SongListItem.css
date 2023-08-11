@@ -26,7 +26,7 @@
 
 .song-list-item .song-title {
   margin: 0;
-  font-size: 1rem;
+  font-size: .75rem;
   color: #28282B;
 }
 
@@ -35,15 +35,11 @@
   color: #5e5e5e;
   margin: 0;
   font-weight: inherit;
-  font-size: .85rem;
+  font-size: .75rem;
 }
 
 .song-list-item:nth-of-type(even) {
   background-color: #f1f1f1;
-}
-
-.icon-container .favorite-button {
-  margin-right: 1rem;
 }
 
 .song-artwork img {
@@ -69,6 +65,17 @@
   box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);
 }
 
+.song-list-item .icon-container {
+  white-space: nowrap;
+}
+
+.song-list-item .song-title,
+.song-list-item .song-artist,
+.song-list-item .song-album {
+  /* white-space: nowrap; */
+  overflow-y: hidden;
+}
+
 
 @media only screen and (min-width: 480px) {
   .song-info {
@@ -82,5 +89,18 @@
   .song-list-item .song-artist,
   .song-list-item .song-album {
     font-size: 1rem
+  }
+
+  .song-list-item .icon-container .favorite-button {
+    margin-right: 1rem;
+  }
+
+  .song-list-item .song-title {
+    font-size: 1rem;
+  }
+
+  .song-list-item .song-artist,
+  .song-list-item .song-album {
+  font-size: .85rem;
   }
 };

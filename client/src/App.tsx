@@ -100,6 +100,7 @@ export default function App() {
         libraryPage={() => setShowPage('library')}
         user={user}
         nowPlaying={nowPlaying}
+        showPage={showPage}
       />
     </div>
   );
