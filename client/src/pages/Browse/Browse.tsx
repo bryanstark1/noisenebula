@@ -9,9 +9,10 @@ interface BrowseProps {
   setSelectedSong: any,
   user: any
   fetchSongs: () => void,
+  setNowPlaying: any,
 };
 
-export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs }: BrowseProps) {
+export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs, setNowPlaying }: BrowseProps) {
   // const [sort, setSort] = useState('titleAscending');
   // const titleDescending = [...songs].sort((a, b) =>
   //   a.title > b.title ? -1: 1,
@@ -30,6 +31,7 @@ export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSon
       setSelectedSong={setSelectedSong}
       user={user}
       fetchSongs={fetchSongs}
+      setNowPlaying={setNowPlaying}
     />
   });
 

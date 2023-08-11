@@ -8,9 +8,10 @@ interface LibraryProps {
   setSelectedSong: any,
   user: any
   fetchSongs: () => void,
+  setNowPlaying: any,
 };
 
-export default function Library({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs }: LibraryProps) {
+export default function Library({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs, setNowPlaying }: LibraryProps) {
   const songsList = songs.map((s: any) => {
     if (s.favorites.includes(user._id)) {
       return <SongCard
@@ -21,6 +22,7 @@ export default function Library({ songs, onOpen, modalSongDetails, setSelectedSo
         setSelectedSong={setSelectedSong}
         user={user}
         fetchSongs={fetchSongs}
+        setNowPlaying={setNowPlaying}
       />;
     } else {
       return null;

@@ -19,6 +19,7 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [selectedSong, setSelectedSong] = useState('');
+  const [nowPlaying, setNowPlaying] = useState('');
 
   async function fetchSongs() {
     try {
@@ -54,6 +55,7 @@ export default function App() {
           setSelectedSong={setSelectedSong}
           user={user}
           fetchSongs={fetchSongs}
+          setNowPlaying={setNowPlaying}
         />
       }
       {showPage === 'library' &&
@@ -64,6 +66,7 @@ export default function App() {
           setSelectedSong={setSelectedSong}
           user={user}
           fetchSongs={fetchSongs}
+          setNowPlaying={() => setNowPlaying}
         />
       }
       {showPage === 'profile' &&
@@ -88,6 +91,7 @@ export default function App() {
         profilePage={() => setShowPage('profile')}
         libraryPage={() => setShowPage('library')}
         user={user}
+        nowPlaying={nowPlaying}
       />
     </div>
   );

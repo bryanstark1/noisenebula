@@ -10,29 +10,37 @@ interface FooterProps {
   libraryPage: () =>void,
   profilePage: () => void,
   user: any
+  nowPlaying: string
 }
 
-export default function Footer({homePage, browsePage, libraryPage, profilePage, user}: FooterProps) {
+export default function Footer({homePage, browsePage, libraryPage, profilePage, user, nowPlaying}: FooterProps) {
   return (
     <footer>
-      <button onClick={homePage}>
-        <AiFillHome size={70}/>
-      </button>
-      <button onClick={browsePage}>
-        <MdLibraryMusic size={70}/>
-      </button>
-      {user &&
-        <button onClick={libraryPage}>
-          <HiLibrary size={70}/>
+      <audio controls src={nowPlaying}>
+        {/* {nowPlaying && 
+          <source src={nowPlaying} type='audio/mpeg'/>
+        } */}
+      </audio>
+      <div className='page-icon-container'>
+        <button onClick={homePage}>
+          <AiFillHome size={70}/>
         </button>
-        ||
+        <button onClick={browsePage}>
+          <MdLibraryMusic size={70}/>
+        </button>
+        {user &&
+          <button onClick={libraryPage}>
+            <HiLibrary size={70}/>
+          </button>
+          ||
+          <button onClick={profilePage}>
+            <HiLibrary size={70}/>
+          </button>
+        }
         <button onClick={profilePage}>
-          <HiLibrary size={70}/>
+          <FaUser size={70}/>
         </button>
-      }
-      <button onClick={profilePage}>
-        <FaUser size={70}/>
-      </button>
+      </div>
     </footer>
   );
 };

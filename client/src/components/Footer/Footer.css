@@ -1,5 +1,6 @@
 footer {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   background-color: #28282B;
   color: white;
@@ -8,7 +9,6 @@ footer {
   width: 100%;
   height: 100px;
   bottom: 0;
-  padding: 0 1rem;
 }
 
 footer button {
@@ -24,4 +24,14 @@ footer button:hover {
 
 footer button:active {
   color: orange;
+}
+
+.page-icon-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+audio {
+  width: 100%;
+  /* margin: 0 1rem; */
 }
