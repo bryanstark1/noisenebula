@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import SongListItem from '../../components/SongListItem/SongListItem';
 import "./Browse.css";
 
@@ -13,15 +12,6 @@ interface BrowseProps {
 };
 
 export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs, setNowPlaying }: BrowseProps) {
-  // const [sort, setSort] = useState('titleAscending');
-  // const titleDescending = [...songs].sort((a, b) =>
-  //   a.title > b.title ? -1: 1,
-  // );
-
-  // const titleAscending = [...songs].sort((a, b) =>
-  //   a.title > b.title ? 1: -1,
-  // );
-
   const songsList = songs.map((s: any) => {
     return <SongListItem
       song={s}

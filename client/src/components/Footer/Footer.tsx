@@ -2,6 +2,7 @@ import { MdLibraryMusic } from 'react-icons/md';
 import { FaUser } from 'react-icons/fa';
 import { AiFillHome } from 'react-icons/ai';
 import { HiLibrary } from 'react-icons/hi';
+import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import './Footer.css';
 
 interface FooterProps {
@@ -16,11 +17,7 @@ interface FooterProps {
 export default function Footer({homePage, browsePage, libraryPage, profilePage, user, nowPlaying}: FooterProps) {
   return (
     <footer>
-      <audio controls autoPlay src={nowPlaying}>
-        {/* {nowPlaying && 
-          <source src={nowPlaying} type='audio/mpeg'/>
-        } */}
-      </audio>
+      <AudioPlayer nowPlaying={nowPlaying}/>
       <div className='page-icon-container'>
         <button onClick={homePage}>
           <AiFillHome size={70}/>

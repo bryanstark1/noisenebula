@@ -74,7 +74,7 @@ export default function App() {
           setSelectedSong={setSelectedSong}
           user={user}
           fetchSongs={fetchSongs}
-          setNowPlaying={() => setNowPlaying}
+          setNowPlaying={setNowPlaying}
         />
       }
       {showPage === 'profile' &&
