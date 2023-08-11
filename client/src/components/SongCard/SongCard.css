@@ -14,7 +14,6 @@
 
 .song-card:hover,
 .song-card:nth-of-type(even):hover {
-  /* box-shadow: inset 0px 1px 10px 0px rgba(0,0,0,.2); */
   background-color: aliceblue;
 }
 
@@ -41,11 +40,11 @@
 
 .options {
   cursor: pointer;
-  color: #5e5e5e;
+  color: darkgrey;
 }
 
 .options:hover {
-  color: #28282B;
+  color: #5e5e5e;
 }
 
 .song-card:nth-of-type(even) {
@@ -58,7 +57,28 @@
 
 .song-artwork img {
   height: 50px;
-  /* width: 40px; */
+  position: relative;
+}
+
+.song-card .play-button {
+  background: none;
+  border: none;
+  position: absolute;
+  z-index: 2;
+  height: 50px;
+  cursor: pointer;
+}
+
+.song-card .play-button:hover svg {
+  color: orange;
+}
+
+.song-card .play-button:active {
+  box-shadow: inset 0px 1px 10px 0px rgba(0,0,0,.2);
+}
+
+.song-card .play-button svg {
+  color: rgba(255, 255, 255, .9);
 }
 
 

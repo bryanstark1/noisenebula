@@ -36,8 +36,7 @@ export default function SongCard({ song, onOpen, modalSongDetails, setSelectedSo
 
   return (
     <tr className='song-card'>
-      <button onClick={() => onPlay(1)}><BsFillPlayFill /></button>
-      <td className='song-artwork'><img src={song.artwork} alt="" /></td>
+      <td className='song-artwork'><button className='play-button' onClick={() => onPlay(1)}><BsFillPlayFill size={40} /></button><img src={song.artwork} alt="" /></td>
       <td className='song-title'>{song.title}</td>
       <td className='song-artist'>{song.artist}</td>
       <td className='song-album'>{song.album}</td>
