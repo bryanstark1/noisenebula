@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import SongCard from '../../components/SongCard/SongCard';
+import SongListItem from '../../components/SongListItem/SongListItem';
 import "./Browse.css";
 
 interface BrowseProps {
@@ -23,7 +23,7 @@ export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSon
   // );
 
   const songsList = songs.map((s: any) => {
-    return <SongCard
+    return <SongListItem
       song={s}
       key={s._id}
       onOpen={onOpen}

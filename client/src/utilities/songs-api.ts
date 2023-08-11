@@ -4,17 +4,6 @@ import { getToken } from './users-service';
 
 const BASE_URL = 'http://localhost:4000/songs';
 
-// async function fetchData(input: RequestInfo, init?: RequestInit) {
-//   const response = await fetch(input, init);
-//   if (response.ok) {
-//     return response;
-//   } else {
-//     const errorBody = await response.json();
-//     const errorMessage = errorBody.error;
-//     throw Error(errorMessage);
-//   };
-// };
-
 export async function getSongs(): Promise<SongModel.Song[]> {
   return sendRequest(BASE_URL);
 };
@@ -22,13 +11,6 @@ export async function getSongs(): Promise<SongModel.Song[]> {
 export async function getOneSong(songId: string): Promise<SongModel.Song> {
   return sendRequest(`${BASE_URL}/${songId}`);
 };
-
-// export interface SongInput {
-//   title: string,
-//   artist: string,
-//   album: string,
-//   audioFile: string,
-// };
 
 export async function addSong(formData: any): Promise<SongModel.Song> {
   const options: any = {};

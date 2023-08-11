@@ -3,6 +3,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  color: #5e5e5e;
 }
 
 .favorite-button:hover {
@@ -10,9 +11,9 @@
 }
 
 .favorited {
-  color: orange;
+  color: rgba(255, 165, 0, .8);
 }
 
 .favorited:hover {
-  color: #28282B;
+  color: #5e5e5e;
 }

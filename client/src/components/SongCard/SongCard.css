@@ -1,98 +1,68 @@
 .song-card {
-  border-bottom: 1px solid #d2d2d2;
-  width: 100%;
-  padding: 1rem 0;
-}
-
-.song-card td {
-  padding: .5rem 0;
-}
-
-.song-card:first-of-type {
-  border-top: 1px solid #d2d2d2;
-}
-
-.song-card:hover,
-.song-card:nth-of-type(even):hover {
-  background-color: aliceblue;
-}
-
-.song-info {
   display: flex;
-  align-items: center;
-  gap: .5rem;
-  margin-left: 1rem;
+  flex-direction: column;
+  width: 200px;
+  text-align: start;
+  /* box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2); */
 }
 
-.song-card .song-title {
+.song-card img {
+  height: 200px;
+  width: 200px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,.2);
+}
+
+.song-card:hover h3,
+.song-card:hover h4 {
+  color: black;
+}
+
+.song-card p {
+  text-align: start;
+}
+
+.song-card h3,
+.song-card h4 {
   margin: 0;
+  padding-left: .60rem;
+  color: #5e5e5e;
+}
+
+.song-card h3 {
   font-size: 1rem;
-  color: #28282B;
 }
 
-.song-card .song-artist,
-.song-card .song-album {
-  color: #5e5e5e;
-  margin: 0;
-  font-weight: inherit;
-  font-size: .85rem;
+.song-card h4 {
+  font-size: .80rem;
 }
 
-.options {
-  cursor: pointer;
-  color: darkgrey;
-}
-
-.options:hover {
-  color: #5e5e5e;
-}
-
-.song-card:nth-of-type(even) {
-  background-color: #f1f1f1;
-}
-
-.icon-container .favorite-button {
-  margin-right: 1rem;
-}
-
-.song-artwork img {
-  height: 50px;
-  position: relative;
-}
-
-.song-card .play-button {
-  background: none;
-  border: none;
+.button-container {
+  display: flex;
   position: absolute;
-  z-index: 2;
-  height: 50px;
-  cursor: pointer;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 200px;
+  height: 200px;
 }
 
-.song-card .play-button:hover svg {
-  color: orange;
+.button-container {
+  display: none;
+  margin-bottom: 1rem;
+  background-color: rgba(91, 112, 131, 0.4);
 }
 
-.song-card .play-button:active {
-  box-shadow: inset 0px 1px 10px 0px rgba(0,0,0,.2);
+.song-card .image-container:hover .button-container {
+  display: flex;
 }
 
-.song-card .play-button svg {
-  color: rgba(255, 255, 255, .9);
+.song-card .favorite-button,
+.song-card .options-button {
+  margin-bottom: 0.4rem;
+  background-color: transparent;
+  color: rgba(255, 255, 255, .8);
 }
 
-
-@media only screen and (min-width: 480px) {
-  .song-info {
-    gap: 1rem;
-  }
-
-  .song-card .song-title {
-    font-size: 1.5rem
-  }
-
-  .song-card .song-artist,
-  .song-card .song-album {
-    font-size: 1rem
-  }
-};
+.song-card .options-button:hover svg,
+.song-card .favorite-button:hover svg {
+    color: rgba(255, 165, 0, .8) !important;
+}

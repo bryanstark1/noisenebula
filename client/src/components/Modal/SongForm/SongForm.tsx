@@ -8,15 +8,17 @@ interface AddSongFormProps {
   onClose: () => void,
   selectedSong: SongModel.Song,
   modalContent: string,
+  user: any,
 };
 
-export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalContent }: AddSongFormProps) {
+export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalContent, user }: AddSongFormProps) {
   const [newSong, setNewSong] = useState({
     title: selectedSong.title || '',
     artist: selectedSong.artist || '',
     album: selectedSong.album || '',
     audioFile: selectedSong.audioFile || '',
     // artwork: selectedSong.artwork || '',
+    // createdBy: user._id || '',
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -47,6 +49,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
       album: '',
       audioFile: '',
       // artwork: '',
+      // createdBy: '',
     });
     fetchSongs();
     onClose();
@@ -55,7 +58,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
 
   return (
     <div className='form-container'>
-      <h2>{(modalContent === 'EditSong') && "Edit Song"}{(modalContent === 'AddSong') && 'Add Song'}</h2>
+      <h2>{(modalContent === 'EditSong') && "Edit Song"}{(modalContent === 'AddSong') && 'Add New Song'}</h2>
       <form onSubmit={handleSubmit}>
         <div className='grid-container'>
           <label htmlFor='title'>Title</label>

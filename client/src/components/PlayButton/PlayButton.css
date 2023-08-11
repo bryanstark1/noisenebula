@@ -1,0 +1,13 @@
+.play-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.play-button:hover svg {
+  color: rgba(255, 165, 0, .8);
+}
+
+.play-button svg {
+  color: rgba(255, 255, 255, .8);
+}

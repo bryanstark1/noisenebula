@@ -45,7 +45,15 @@ export default function App() {
           user={user}
         />
       {showPage === 'home' &&
-        <Home />
+        <Home 
+          songs={songs}
+          onOpen={() => setShowModal(true)}
+          modalSongDetails={() => setModalContent('SongDetails')}
+          setSelectedSong={setSelectedSong}
+          user={user}
+          fetchSongs={fetchSongs}
+          setNowPlaying={setNowPlaying}
+        />
       }
       {showPage === 'browse' &&
         <Browse

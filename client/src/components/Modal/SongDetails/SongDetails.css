@@ -23,13 +23,17 @@
   margin: 0;
 }
 
-.song-details .button-container {
+.song-details .modal-button-container {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .song-details button {
   font-size: 1.5rem;
   padding:  .5rem 1rem;
+}
+
+.song-details .song-artwork {
+  height: 350px;
 }

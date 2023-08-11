@@ -1,0 +1,10 @@
+.options-button {
+  cursor: pointer;
+  color: #5e5e5e;
+  background-color: inherit;
+  border: none;
+}
+
+.options-button:hover {
+  color: rgba(255, 165, 0, .8);
+}

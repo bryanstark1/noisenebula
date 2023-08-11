@@ -1,4 +1,4 @@
-import SongCard from '../../components/SongCard/SongCard';
+import SongListItem from '../../components/SongListItem/SongListItem';
 import "./Library.css";
 
 interface LibraryProps {
@@ -14,7 +14,7 @@ interface LibraryProps {
 export default function Library({ songs, onOpen, modalSongDetails, setSelectedSong, user, fetchSongs, setNowPlaying }: LibraryProps) {
   const songsList = songs.map((s: any) => {
     if (s.favorites.includes(user._id)) {
-      return <SongCard
+      return <SongListItem
         song={s}
         key={s._id}
         onOpen={onOpen}

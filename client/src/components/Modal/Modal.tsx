@@ -33,6 +33,7 @@ export default function Modal({ modalContent, modalEditSong, onClose, fetchSongs
             onClose={onClose}
             selectedSong={selectedSong}
             modalContent={modalContent}
+            user={user}
           />
         }
       </div>
