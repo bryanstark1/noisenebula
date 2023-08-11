@@ -16,7 +16,7 @@ interface FooterProps {
 export default function Footer({homePage, browsePage, libraryPage, profilePage, user, nowPlaying}: FooterProps) {
   return (
     <footer>
-      <audio controls src={nowPlaying}>
+      <audio controls autoPlay src={nowPlaying}>
         {/* {nowPlaying && 
           <source src={nowPlaying} type='audio/mpeg'/>
         } */}

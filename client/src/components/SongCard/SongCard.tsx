@@ -1,3 +1,4 @@
+import { updateSong } from "../../utilities/songs-service";
 import { BsThreeDotsVertical, BsFillPlayFill } from "react-icons/bs"
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import './SongCard.css';
@@ -19,14 +20,23 @@ export default function SongCard({ song, onOpen, modalSongDetails, setSelectedSo
     setSelectedSong(song);
   };
 
-  function onClick() {
-    setNowPlaying(null)
+  async function onPlay(changeValue: number) {
     setNowPlaying(song.audioFile);
+    const updatedSongData = {
+      _id: song._id,
+      title: song.title,
+      artist: song.artitle,
+      album: song.album,
+      audioFile: song.audioFile,
+      artwork: song.artwork,
+      playCount: song.playCount+changeValue
+    }
+    await updateSong(song._id, updatedSongData);
   };
 
   return (
     <tr className='song-card'>
-      <button onClick={onClick}><BsFillPlayFill /></button>
+      <button onClick={() => onPlay(1)}><BsFillPlayFill /></button>
       <td className='song-artwork'><img src={song.artwork} alt="" /></td>
       <td className='song-title'>{song.title}</td>
       <td className='song-artist'>{song.artist}</td>
