@@ -15,6 +15,7 @@ export const create = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
+    console.log('anythin')
     const user = await UserModel.findOne({ email: req.body.email });
     if (!user) throw new Error();
     const match = await bcrypt.compare(req.body.password, user.password);

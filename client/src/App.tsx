@@ -87,6 +87,7 @@ export default function App() {
         browsePage={() => setShowPage('browse')}
         profilePage={() => setShowPage('profile')}
         libraryPage={() => setShowPage('library')}
+        user={user}
       />
     </div>
   );

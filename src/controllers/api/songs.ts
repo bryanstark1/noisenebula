@@ -1,6 +1,5 @@
 import { Response, Request } from "express";
 import crypto from 'crypto';
-import { uploadFile, deleteFile, getObjectSignedUrl } from '../../s3';
 import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand, PutObjectRequest } from "@aws-sdk/client-s3"
 import S3 from "aws-sdk/clients/s3"
 import Song from "../../models/song";

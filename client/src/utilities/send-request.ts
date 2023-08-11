@@ -8,7 +8,6 @@ export default async function sendRequest(url: any, method = 'GET', payload = nu
     options.headers = { 'Content-Type': 'application/json' };
     options.body = JSON.stringify(payload);
   }
-  options.body = payload;
   const token = getToken();
   if (token) {
     // Need to add an Authorization header

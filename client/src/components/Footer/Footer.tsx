@@ -9,9 +9,10 @@ interface FooterProps {
   browsePage: () => void,
   libraryPage: () =>void,
   profilePage: () => void,
+  user: any
 }
 
-export default function Footer({homePage, browsePage, libraryPage, profilePage}: FooterProps) {
+export default function Footer({homePage, browsePage, libraryPage, profilePage, user}: FooterProps) {
   return (
     <footer>
       <button onClick={homePage}>
@@ -20,9 +21,15 @@ export default function Footer({homePage, browsePage, libraryPage, profilePage}:
       <button onClick={browsePage}>
         <MdLibraryMusic size={70}/>
       </button>
-      <button onClick={libraryPage}>
-        <HiLibrary size={70}/>
-      </button>
+      {user &&
+        <button onClick={libraryPage}>
+          <HiLibrary size={70}/>
+        </button>
+        ||
+        <button onClick={profilePage}>
+          <HiLibrary size={70}/>
+        </button>
+      }
       <button onClick={profilePage}>
         <FaUser size={70}/>
       </button>
