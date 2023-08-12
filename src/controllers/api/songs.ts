@@ -2,6 +2,7 @@ import { Response, Request } from "express";
 import crypto from 'crypto';
 import S3 from "aws-sdk/clients/s3";
 import Song from "../../models/song";
+import fileSystem from 'fs';
 
 import dotenv from 'dotenv'
 
@@ -33,31 +34,69 @@ export const getSong = async (req: Request, res: Response): Promise<void> => {
   };
 };
 
-export const addSong = async (req: Request, res: Response): Promise<void> => {
-  // const file: any = req.file
-  const body = req.body
-  const songFileName = generateFileName();
+export const uploadFile = async (fileName: any, fileKey: any) => {
+  return new Promise(async function(resolve, reject) {
+  const params: any = {
+    Bucket: bucketName,
+    Key: fileKey,
+    Body: fileName[0].buffer,
+  };
   
-  const filePath = `noisenebula/songs/${songFileName}`;
+  await s3.upload(params, function(s3Err: any, data: any) {
+    if (s3Err){
+      reject(s3Err);
+    }
+      console.log(`File uploaded successfully at ${data.Location}`);
+      resolve(data.Location);
+    });
+  });
+};
+
+export const deleteFile = async (fileKey: any) => {
+  return new Promise(async function(resolve, reject) {
+  const filePath = fileKey.replace('https://noisenebula.s3.amazonaws.com/', '');
   const params: any = {
     Bucket: bucketName,
     Key: filePath,
-    Body: req.file?.buffer
   };
   
-  s3.upload(params, async function(err: any, data: any){
-    if(err){
-      console.log('===========================================')
-			console.log(err, ' err from aws, either your bucket name is wrong or your keys arent correct');
-			console.log('===========================================')
-			res.status(400).json({error: 'Error from aws, check your terminal!'})
+  await s3.deleteObject(params, function(s3Err: any, data: any) {
+    if (s3Err){
+      reject(s3Err);
     }
+      console.log(`File uploaded successfully at ${data.Location}`);
+      resolve(data.Location);
+    });
+  });
+};
+
+export const addSong = async (req: Request, res: Response): Promise<void> => {
+  const body = req.body
+  let afterSongPeriod = req.files?.audioFile[0].originalname.substr(req.files?.audioFile[0].originalname.indexOf(".") + 1);
+  const songFileName = 'noisenebula/songs/' + generateFileName() + '.' + afterSongPeriod;
+  let afterArtworkPeriod = req.files?.artwork[0].originalname.substr(req.files?.artwork[0].originalname.indexOf(".") + 1);
+  const artworkFileName = 'noisenebula/artwork/' + generateFileName() + '.' +  afterArtworkPeriod;
+  console.log(songFileName, artworkFileName);
+  const song = {
+    title: req.body.title,
+    artist: req.body.artist,
+    album: req.body.album,
+    audioFile: '',
+    artwork: ''
+  };
+  let uploadFilePromises = [];
+  uploadFilePromises.push(uploadFile(req.files?.audioFile, songFileName));
+  uploadFilePromises.push(uploadFile(req.files?.artwork, artworkFileName));
+
+  Promise.all(uploadFilePromises).then(async (values) => {
     try {
+      console.log(values, 'string');
       const post = await Song.create({
         title: req.body.title,
         artist: req.body.artist,
         album: req.body.album,
-        audioFile: data.Location
+        audioFile: values[0],
+        artwork: values[1],
       });
       res.json(post);
     } catch (error) {
@@ -82,6 +121,18 @@ export const deleteSong = async (req: Request, res: Response): Promise<void> => 
     Bucket: bucketName,
     Key: filePath,
   };
+  let uploadFilePromises: any = [];
+  uploadFilePromises.push(deleteFile(song?.audioFile))
+  uploadFilePromises.push(deleteFile(song?.artwork))
+
+  Promise.all(uploadFilePromises).then(async (values) => {
+    try {
+      res.json(await Song.findByIdAndRemove(req.params.id));
+    } catch (error) {
+      res.status(400).json(error);
+    };
+  });
+
   s3.deleteObject(params, async function(err: any, data: any){
     if(err){
       console.log('===========================================')
@@ -89,10 +140,5 @@ export const deleteSong = async (req: Request, res: Response): Promise<void> => 
 			console.log('===========================================')
 			res.status(400).json({error: 'Error from aws, check your terminal!'})
     }
-    try {
-      res.json(await Song.findByIdAndRemove(req.params.id));
-    } catch (error) {
-      res.status(400).json(error);
-    };
   });
 };

@@ -17,7 +17,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
     artist: selectedSong.artist || '',
     album: selectedSong.album || '',
     audioFile: selectedSong.audioFile || '',
-    // artwork: selectedSong.artwork || '',
+    artwork: selectedSong.artwork || '',
     // createdBy: user._id || '',
   });
 
@@ -29,6 +29,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newSongData = { ...newSong, [e.target.name]: e.currentTarget.files };
     setNewSong(newSongData);
+    console.log(newSongData);
   };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -41,6 +42,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
       formData.append("artist", newSong.artist)
       formData.append("album", newSong.album)
       formData.append("audioFile", newSong.audioFile[0])
+      formData.append("artwork", newSong.artwork[0])
       await addSong(formData);
     };
     setNewSong({
@@ -48,7 +50,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
       artist: '',
       album: '',
       audioFile: '',
-      // artwork: '',
+      artwork: '',
       // createdBy: '',
     });
     fetchSongs();
@@ -71,8 +73,8 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
             <>
               <label htmlFor="audioFile" className='file-upload-label'>Upload Audio</label>
               <input className='file-upload-input' type="file" name='audioFile' accept="audio/*" onChange={handleFileChange}/>
-              {/* <label htmlFor="artwork" className='file-upload'>Album Artwork</label>
-              <input type="file" name='artwork' accept="image/*"/> onChange={handleFileChange} */}
+              <label htmlFor="artwork" className='file-upload'>Album Artwork</label>
+              <input type="file" name='artwork' accept="image/*" onChange={handleFileChange}/>
             </>
           }
         </div>

@@ -15,7 +15,7 @@ router.get("/", SongsCtrl.getSongs);
 // GET One song
 router.get('/:id', SongsCtrl.getSong)
 // POST New song
-router.post("/add", upload.single('audioFile'), SongsCtrl.addSong);
+router.post("/add", upload.fields([{name: 'audioFile', maxCount: 1}, {name: 'artwork', maxCount: 1}]), SongsCtrl.addSong);
 // PUT Edit song
 router.put("/:id", SongsCtrl.updateSong);
 // DELETE song
