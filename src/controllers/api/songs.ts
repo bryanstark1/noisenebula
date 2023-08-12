@@ -1,13 +1,12 @@
 import { Response, Request } from "express";
 import crypto from 'crypto';
-import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand, PutObjectRequest } from "@aws-sdk/client-s3"
-import S3 from "aws-sdk/clients/s3"
+import S3 from "aws-sdk/clients/s3";
 import Song from "../../models/song";
 
 import dotenv from 'dotenv'
 
 
-dotenv.config()
+dotenv.config();
 
 const bucketName = process.env.AWS_BUCKET_NAME
 const region = process.env.AWS_BUCKET_REGION
@@ -37,16 +36,15 @@ export const getSong = async (req: Request, res: Response): Promise<void> => {
 export const addSong = async (req: Request, res: Response): Promise<void> => {
   // const file: any = req.file
   const body = req.body
-  const songFileName = generateFileName()
+  const songFileName = generateFileName();
   
-  const filePath = `noisenebula/songs/${songFileName}-${req.file?.originalname}`;
+  const filePath = `noisenebula/songs/${songFileName}`;
   const params: any = {
     Bucket: bucketName,
     Key: filePath,
     Body: req.file?.buffer
-    // ContentType: req.file?.mimetype,
   };
-
+  
   s3.upload(params, async function(err: any, data: any){
     if(err){
       console.log('===========================================')
@@ -60,15 +58,12 @@ export const addSong = async (req: Request, res: Response): Promise<void> => {
         artist: req.body.artist,
         album: req.body.album,
         audioFile: data.Location
-      })
-      console.log(post);
+      });
       res.json(post);
     } catch (error) {
       res.status(400).json(error);
     };
-  })
-
-  console.log(songFileName)
+  });
 };
 
 export const updateSong = async (req: Request, res: Response): Promise<void> => {
@@ -81,9 +76,23 @@ export const updateSong = async (req: Request, res: Response): Promise<void> => 
 };
 
 export const deleteSong = async (req: Request, res: Response): Promise<void> => {
-  try {
-    res.json(await Song.findByIdAndRemove(req.params.id));
-  } catch (error) {
-    res.status(400).json(error);
+  const song = await Song.findById(req.params.id);
+  const filePath = song?.audioFile.replace('https://noisenebula.s3.amazonaws.com/', '');
+  const params: any = {
+    Bucket: bucketName,
+    Key: filePath,
   };
+  s3.deleteObject(params, async function(err: any, data: any){
+    if(err){
+      console.log('===========================================')
+			console.log(err, ' err from aws, either your bucket name is wrong or your keys arent correct');
+			console.log('===========================================')
+			res.status(400).json({error: 'Error from aws, check your terminal!'})
+    }
+    try {
+      res.json(await Song.findByIdAndRemove(req.params.id));
+    } catch (error) {
+      res.status(400).json(error);
+    };
+  });
 };

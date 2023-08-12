@@ -19,7 +19,7 @@ export default function Home({ songs, modalSongDetails, onOpen, setSelectedSong,
     a.createAt > b.createAt ? 1: -1,
   );
   const favoritedDescending = [...songs].sort((a, b) =>
-    a.createAt > b.createAt ? -1: 1,
+    a.favorites.length > b.favorites.length ? -1: 1,
   );
 
   const tempMostPlayedList = playCountDescending.map((s: any) => {
