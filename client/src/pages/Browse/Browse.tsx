@@ -29,20 +29,7 @@ export default function Browse({ songs, onOpen, modalSongDetails, setSelectedSon
   return (
     <main className='browse-page'>
       <h1>Browse All</h1>
-      {/* <table className='songs-list'>
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Album</th>
-          </tr>
-        </thead>
-        <tbody> */}
-          {songsList}
-        {/* </tbody> */}
-      {/* </table> */}
+      {songsList}
     </main>
   )
 };

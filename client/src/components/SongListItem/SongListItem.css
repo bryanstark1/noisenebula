@@ -122,12 +122,12 @@
   padding: .5rem .25rem;
 }
 
-.song-list-item-new:first-of-type {
+.song-list-item-new:nth-child(2) {
   border-top: 1px solid #d2d2d2;
 }
 
 .song-list-item-new:hover,
-.song-list-item-new:nth-of-type(even):hover {
+.song-list-item-new:nth-child(odd):hover {
   background-color: aliceblue;
 }
 
@@ -159,7 +159,7 @@
   font-size: .75rem;
 }
 
-.song-list-item-new:nth-of-type(even) {
+.song-list-item-new:nth-child(odd) {
   background-color: #f1f1f1;
 }
 
