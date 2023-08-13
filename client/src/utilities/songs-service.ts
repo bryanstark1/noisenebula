@@ -6,7 +6,6 @@ export async function getSongs() {
 }
 
 export async function addSong(song: any){
-  console.log(song)
   await songsAPI.addSong(song);
 }
 

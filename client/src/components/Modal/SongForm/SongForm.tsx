@@ -18,7 +18,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
     album: selectedSong.album || '',
     audioFile: selectedSong.audioFile || '',
     artwork: selectedSong.artwork || '',
-    // createdBy: user._id || '',
+    createdBy: `ObjectId('${user._id}')`,
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -34,6 +34,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    console.log('ID', user._id)
     if (modalContent === 'EditSong') {
       await updateSong(selectedSong._id, newSong);
     } else {
@@ -43,6 +44,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
       formData.append("album", newSong.album)
       formData.append("audioFile", newSong.audioFile[0])
       formData.append("artwork", newSong.artwork[0])
+      formData.append("createdBy", user._id)
       await addSong(formData);
     };
     setNewSong({
@@ -51,7 +53,7 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
       album: '',
       audioFile: '',
       artwork: '',
-      // createdBy: '',
+      createdBy: user._id,
     });
     fetchSongs();
     onClose();

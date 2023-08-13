@@ -31,7 +31,12 @@ const songSchema: Schema = new Schema(
         ref: 'User'
       }
     ],
-    // createdBy: {type: Schema.Types.ObjectId, ref: "User", required: true},
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User', 
+      required: true,
+      default: '64d2bc38f604d6945303bd6f',
+    },
   },
   { timestamps: true }
 );

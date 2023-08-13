@@ -52,6 +52,52 @@ export const uploadFile = async (fileName: any, fileKey: any) => {
   });
 };
 
+export const addSong = async (req: Request, res: Response): Promise<void> => {
+  const body = req.body
+  let afterSongPeriod = req.files?.audioFile[0].originalname.substr(req.files?.audioFile[0].originalname.indexOf(".") + 1);
+  const songFileName = 'noisenebula/songs/' + generateFileName() + '.' + afterSongPeriod;
+  let afterArtworkPeriod = req.files?.artwork[0].originalname.substr(req.files?.artwork[0].originalname.indexOf(".") + 1);
+  const artworkFileName = 'noisenebula/artwork/' + generateFileName() + '.' +  afterArtworkPeriod;
+  console.log(songFileName, artworkFileName);
+  const song = {
+    title: req.body.title,
+    artist: req.body.artist,
+    album: req.body.album,
+    audioFile: '',
+    artwork: '',
+    createBy: req.body.createdBy,
+  };
+  let uploadFilePromises = [];
+  uploadFilePromises.push(uploadFile(req.files?.audioFile, songFileName));
+  uploadFilePromises.push(uploadFile(req.files?.artwork, artworkFileName));
+
+  Promise.all(uploadFilePromises).then(async (values) => {
+    try {
+      console.log(values, 'string');
+      const post = await Song.create({
+        title: req.body.title,
+        artist: req.body.artist,
+        album: req.body.album,
+        audioFile: values[0],
+        artwork: values[1],
+        createdBy: req.body.createdBy
+      });
+      res.json(post);
+    } catch (error) {
+      res.status(400).json(error);
+    };
+  });
+};
+
+export const updateSong = async (req: Request, res: Response): Promise<void> => {
+  const songId = req.params.id;
+  try {
+    res.json(await Song.findByIdAndUpdate(songId, req.body, { new: true }));
+  } catch (error) {
+    res.status(400).json(error);
+  };
+};
+
 export const deleteFile = async (fileKey: any) => {
   return new Promise(async function(resolve, reject) {
   const filePath = fileKey.replace('https://noisenebula.s3.amazonaws.com/', '');
@@ -68,50 +114,6 @@ export const deleteFile = async (fileKey: any) => {
       resolve(data.Location);
     });
   });
-};
-
-export const addSong = async (req: Request, res: Response): Promise<void> => {
-  const body = req.body
-  let afterSongPeriod = req.files?.audioFile[0].originalname.substr(req.files?.audioFile[0].originalname.indexOf(".") + 1);
-  const songFileName = 'noisenebula/songs/' + generateFileName() + '.' + afterSongPeriod;
-  let afterArtworkPeriod = req.files?.artwork[0].originalname.substr(req.files?.artwork[0].originalname.indexOf(".") + 1);
-  const artworkFileName = 'noisenebula/artwork/' + generateFileName() + '.' +  afterArtworkPeriod;
-  console.log(songFileName, artworkFileName);
-  const song = {
-    title: req.body.title,
-    artist: req.body.artist,
-    album: req.body.album,
-    audioFile: '',
-    artwork: ''
-  };
-  let uploadFilePromises = [];
-  uploadFilePromises.push(uploadFile(req.files?.audioFile, songFileName));
-  uploadFilePromises.push(uploadFile(req.files?.artwork, artworkFileName));
-
-  Promise.all(uploadFilePromises).then(async (values) => {
-    try {
-      console.log(values, 'string');
-      const post = await Song.create({
-        title: req.body.title,
-        artist: req.body.artist,
-        album: req.body.album,
-        audioFile: values[0],
-        artwork: values[1],
-      });
-      res.json(post);
-    } catch (error) {
-      res.status(400).json(error);
-    };
-  });
-};
-
-export const updateSong = async (req: Request, res: Response): Promise<void> => {
-  const songId = req.params.id;
-  try {
-    res.json(await Song.findByIdAndUpdate(songId, req.body, { new: true }));
-  } catch (error) {
-    res.status(400).json(error);
-  };
 };
 
 export const deleteSong = async (req: Request, res: Response): Promise<void> => {

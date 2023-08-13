@@ -6,6 +6,7 @@ export interface Song {
   audioFile?: string,
   artwork?: string,
   playCount: number,
+  createdBy: string,
   createdAt: string,
   updatedAt: string,
 };
