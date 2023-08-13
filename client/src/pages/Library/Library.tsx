@@ -36,6 +36,7 @@ export default function Library({ songs, onOpen, modalSongDetails, setSelectedSo
         <thead>
           <tr>
             <th></th>
+            <th></th>
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>

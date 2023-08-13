@@ -21,22 +21,22 @@ export default function Footer({homePage, browsePage, libraryPage, profilePage, 
       <AudioPlayer nowPlaying={nowPlaying}/>
       <div className='page-icon-container'>
         <button onClick={homePage} className={showPage == 'home' ? 'highlight' : '' }>
-          <AiFillHome size={88}/>
+          <AiFillHome size={80}/>
         </button>
         <button onClick={browsePage} className={showPage == 'browse' ? 'highlight' : '' }>
-          <MdLibraryMusic size={88}/>
+          <MdLibraryMusic size={80}/>
         </button>
         {user &&
           <button onClick={libraryPage} className={showPage == 'library' ? 'highlight' : '' }>
-            <HiLibrary size={88}/>
+            <HiLibrary size={80}/>
           </button>
           ||
           <button onClick={profilePage} className={showPage == 'page' ? 'highlight' : '' }>
-            <HiLibrary size={88}/>
+            <HiLibrary size={80}/>
           </button>
         }
         <button onClick={profilePage} className={showPage == 'profile' ? 'highlight' : '' }>
-          <FaUser size={88}/>
+          <FaUser size={80}/>
         </button>
       </div>
     </footer>

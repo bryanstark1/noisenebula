@@ -30,6 +30,11 @@ main h1 {
   border-collapse: collapse;
 }
 
+.songs-list td,
+.songs-list th {
+  text-align: left;
+}
+
 .songs-list th:nth-child(5), 
 .songs-list td:nth-child(5) {
   display: none;
