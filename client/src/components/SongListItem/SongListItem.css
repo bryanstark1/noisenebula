@@ -1,4 +1,4 @@
-.song-list-item {
+/* .song-list-item {
   border-bottom: 1px solid #d2d2d2;
   width: 100%;
   padding: 1rem 0;
@@ -100,6 +100,136 @@
 
   .song-list-item .song-artist,
   .song-list-item .song-album {
+  font-size: .85rem;
+  }
+}; */
+
+
+
+
+
+
+.song-list-item-new {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d2d2d2;
+  width: 100%;
+  padding: .5rem 0;
+  margin-left: 0.25rem;
+}
+
+.song-list-item-new td {
+  padding: .5rem .25rem;
+}
+
+.song-list-item-new:first-of-type {
+  border-top: 1px solid #d2d2d2;
+}
+
+.song-list-item-new:hover,
+.song-list-item-new:nth-of-type(even):hover {
+  background-color: aliceblue;
+}
+
+.song-list-item-new .song-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1rem;
+}
+
+.song-list-item-new .song-title {
+  margin: 0;
+  font-size: 1rem;
+  color: #28282B;
+}
+
+.song-list-item-new .artist-album {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-list-item-new .song-artist,
+.song-list-item-new .song-album {
+  color: #5e5e5e;
+  margin: 0;
+  font-weight: inherit;
+  font-size: .75rem;
+}
+
+.song-list-item-new:nth-of-type(even) {
+  background-color: #f1f1f1;
+}
+
+.song-list-item-new .song-artwork {
+  margin: 0 0.5rem;
+}
+
+.song-list-item-new .song-artwork img {
+  height: 50px;
+  width: 50px;
+  position: relative;
+}
+
+.song-list-item-new .play-button {
+  position: absolute;
+  z-index: 2;
+}
+
+.song-list-item-new .options-button {
+  right: 0;
+  position: absolute;
+}
+
+.song-list-item-new .play-button svg {
+  margin-top: .2rem;
+}
+
+.song-list-item-new .play-button:active {
+  box-shadow: inset 0px 1px 10px 0px rgba(0,0,0,.2);
+}
+
+.song-list-item-new .song-artwork:hover img {
+  box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);
+}
+
+.song-list-item-new .icon-container {
+  white-space: nowrap;
+}
+
+.song-list-item-new .song-title,
+.song-list-item-new .song-artist,
+.song-list-item-new .song-album {
+  overflow-y: hidden;
+}
+
+
+@media only screen and (min-width: 480px) {
+  .song-info {
+    gap: .5rem;
+  }
+
+  .song-list-item-new .song-title {
+    font-size: 1.5rem
+  }
+
+  .song-list-item-new .song-artist,
+  .song-list-item-new .song-album {
+    font-size: 1rem
+  }
+
+  .song-list-item-new .icon-container .favorite-button {
+    margin-right: 1rem;
+  }
+
+  .song-list-item-new .song-title {
+    font-size: 1rem;
+  }
+
+  .song-list-item-new .song-artist,
+  .song-list-item-new .song-album {
   font-size: .85rem;
   }
 };

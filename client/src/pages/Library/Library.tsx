@@ -31,8 +31,8 @@ export default function Library({ songs, onOpen, modalSongDetails, setSelectedSo
 
   return (
     <main className='library-page'>
-      <h1>Favorites</h1>
-      <table className='songs-list'>
+      <h1>Library</h1>
+      {/* <table className='songs-list'>
         <thead>
           <tr>
             <th></th>
@@ -42,10 +42,10 @@ export default function Library({ songs, onOpen, modalSongDetails, setSelectedSo
             <th>Album</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody> */}
           {songsList}
-        </tbody>
-      </table>
+        {/* </tbody> */}
+      {/* </table> */}
     </main>
   )
 };
