@@ -5,7 +5,7 @@
 }
 
 .song-list-item td {
-  padding: .5rem 0;
+  padding: .5rem .25rem;
 }
 
 .song-list-item:first-of-type {
@@ -72,7 +72,6 @@
 .song-list-item .song-title,
 .song-list-item .song-artist,
 .song-list-item .song-album {
-  /* white-space: nowrap; */
   overflow-y: hidden;
 }
 

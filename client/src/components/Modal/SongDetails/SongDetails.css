@@ -30,11 +30,16 @@
   margin: 1rem 0;
 }
 
-.song-details button {
+.song-details button:not(.favorite-button) {
   font-size: 1.25rem;
   padding:  .5rem 1rem;
+  box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .song-details .song-artwork {
   height: 300px;
+  box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);
+  border-radius: 20px;
 }

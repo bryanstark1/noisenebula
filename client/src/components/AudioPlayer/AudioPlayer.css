@@ -2,7 +2,6 @@ audio {
   width: 100%;
   max-width: 1000px;
   border-radius: 0;
-  transform: scale(1.015);
   -webkit-text-fill-color: orange;
   height: 3.4rem;
 }

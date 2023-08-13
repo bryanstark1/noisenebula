@@ -31,7 +31,7 @@ export default function Library({ songs, onOpen, modalSongDetails, setSelectedSo
 
   return (
     <main className='library-page'>
-      <h1>Library</h1>
+      <h1>Favorites</h1>
       <table className='songs-list'>
         <thead>
           <tr>

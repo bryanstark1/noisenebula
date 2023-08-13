@@ -73,8 +73,8 @@ export default function AddSongForm({ fetchSongs, onClose, selectedSong, modalCo
             <>
               <label htmlFor="audioFile" className='file-upload-label'>Upload Audio</label>
               <input className='file-upload-input' type="file" name='audioFile' accept="audio/*" onChange={handleFileChange}/>
-              <label htmlFor="artwork" className='file-upload'>Album Artwork</label>
-              <input type="file" name='artwork' accept="image/*" onChange={handleFileChange}/>
+              <label htmlFor="artwork" className='file-upload-label'>Upload Artwork</label>
+              <input className='file-upload-input' type="file" name='artwork' accept="image/*" onChange={handleFileChange}/>
             </>
           }
         </div>
