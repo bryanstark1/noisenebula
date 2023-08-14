@@ -1,6 +1,7 @@
 .library-page .back-button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .library-page .playlist-header {
@@ -24,6 +25,7 @@
   padding: 1rem 0.75rem;
   font-size: 1.25rem;
   color: #5e5e5e;
+  cursor: pointer;
 }
 
 .library-page .playlist svg:nth-child(1) {

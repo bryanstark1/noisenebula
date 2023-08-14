@@ -33,10 +33,6 @@ header button {
   color: #28282B;
 }
 
-header button:hover:not(.app-name) {
-  color: #5e5e5e;
-}
-
 nav {
   display: flex;
   align-items: center;
@@ -46,6 +42,12 @@ nav {
 
 nav .add-song {
   color: orange;
+  transition: transform .25s ease-in-out;
+}
+
+nav .add-song:hover {
+  transform: scale(1.2);
+  
 }
 
 .cloud-logo {
