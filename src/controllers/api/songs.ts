@@ -53,10 +53,11 @@ export const uploadFile = async (fileName: any, fileKey: any) => {
 };
 
 export const addSong = async (req: Request, res: Response): Promise<void> => {
-  const body = req.body
-  let afterSongPeriod = req.files?.audioFile[0].originalname.substr(req.files?.audioFile[0].originalname.indexOf(".") + 1);
+  // https://stackoverflow.com/questions/56491896/using-multer-and-express-with-typescript
+  const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+  let afterSongPeriod = files.audioFile[0].originalname.substr(files.audioFile[0].originalname.indexOf(".") + 1);
   const songFileName = 'noisenebula/songs/' + generateFileName() + '.' + afterSongPeriod;
-  let afterArtworkPeriod = req.files?.artwork[0].originalname.substr(req.files?.artwork[0].originalname.indexOf(".") + 1);
+  let afterArtworkPeriod = files.artwork[0].originalname.substr(files.artwork[0].originalname.indexOf(".") + 1);
   const artworkFileName = 'noisenebula/artwork/' + generateFileName() + '.' +  afterArtworkPeriod;
   console.log(songFileName, artworkFileName);
   const song = {
@@ -68,8 +69,8 @@ export const addSong = async (req: Request, res: Response): Promise<void> => {
     createBy: req.body.createdBy,
   };
   let uploadFilePromises = [];
-  uploadFilePromises.push(uploadFile(req.files?.audioFile, songFileName));
-  uploadFilePromises.push(uploadFile(req.files?.artwork, artworkFileName));
+  uploadFilePromises.push(uploadFile(files.audioFile, songFileName));
+  uploadFilePromises.push(uploadFile(files.artwork, artworkFileName));
 
   Promise.all(uploadFilePromises).then(async (values) => {
     try {

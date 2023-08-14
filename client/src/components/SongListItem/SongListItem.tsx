@@ -38,7 +38,7 @@ export default function SongListItem({ song, onOpen, modalSongDetails, setSelect
       </div>
       <div className='song-info'>
         <p className='song-title'>{song.title}</p>
-        <p className='artist-album'><span className='song-artist'>{song.artist}</span> - <span className='song-album'>{song.album}</span></p>
+        <p className='artist-album'><span className='song-artist'>{song.artist}</span><span className='song-album'> - {song.album}</span></p>
       </div>
       <OptionsButton song={song} onOpen={onOpen} modalSongDetails={modalSongDetails} setSelectedSong={setSelectedSong} />
     </div>
