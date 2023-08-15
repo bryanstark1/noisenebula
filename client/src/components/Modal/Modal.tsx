@@ -1,6 +1,5 @@
 import SongForm from './SongForm/SongForm';
 import SongDetails from './SongDetails/SongDetails';
-import * as SongModel from '../../models/song';
 import { TfiClose } from 'react-icons/tfi';
 import './Modal.css';
 
@@ -19,7 +18,7 @@ export default function Modal({ modalContent, modalEditSong, onClose, fetchSongs
     <div className="modalDiv">
       <div className="modal">
         <button onClick={onClose} className='close-button'><TfiClose /></button>
-        {modalContent === 'SongDetails' &&
+        {(modalContent === 'SongDetails') ?
           <SongDetails
             selectedSong={selectedSong}
             fetchSongs={fetchSongs}
@@ -27,7 +26,7 @@ export default function Modal({ modalContent, modalEditSong, onClose, fetchSongs
             modalEditSong={modalEditSong}
             user={user}
           />
-        ||
+        :
           <SongForm
             fetchSongs={fetchSongs}
             onClose={onClose}
