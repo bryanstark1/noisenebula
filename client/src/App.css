@@ -40,6 +40,12 @@ main h1 {
   display: none;
 }
 
+.library-page .back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 480px) {
   .songs-list th:nth-child(5), 
   .songs-list td:nth-child(5) {
