@@ -4,9 +4,9 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import path from 'path';
-import songRouter from "./routes/songs";
-import indexRouter from './routes/index';
-import userRouter from './routes/users';
+import songRouter from "./src/routes/songs";
+import indexRouter from './src/routes/index';
+import userRouter from './src/routes/users';
 
 dotenv.config();
 
