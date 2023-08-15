@@ -7,8 +7,7 @@
     "build": "tsc",
     "start": "concurrently \"tsc -w\" \"nodemon dist/js/server.js\"",
     "client": "cd client && npm start",
-    "src": "nodemon app.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "src": "node server.js"
   },
   "author": "",
   "license": "ISC",

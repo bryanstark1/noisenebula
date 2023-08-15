@@ -2,7 +2,7 @@ import * as SongModel from '../models/song';
 import sendRequest from './send-request';
 import { getToken } from './users-service';
 
-const BASE_URL = 'http://localhost:4000/songs';
+const BASE_URL = '/songs';
 
 export async function getSongs(): Promise<SongModel.Song[]> {
   return sendRequest(BASE_URL);
